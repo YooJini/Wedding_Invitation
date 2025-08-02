@@ -21,5 +21,12 @@ export default class OutdoorScene extends Phaser.Scene {
     if (tileset_villa) {
       map.createLayer("object_0", tileset_villa);
     }
+
+    this.cameras.main.roundPixels = true;
+
+    // 타일셋 텍스처 필터 모드 설정
+    this.textures
+      .get("tilesetKey")
+      ?.setFilter(Phaser.Textures.FilterMode.NEAREST);
   }
 }
