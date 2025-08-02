@@ -8,9 +8,6 @@ const config = {
   height: 850,
   physics: {
     default: "arcade",
-    arcade: {
-      gravity: { y: 200 },
-    },
   },
   scene: [OutdoorScene],
 };
