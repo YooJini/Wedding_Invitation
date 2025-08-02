@@ -4,9 +4,10 @@ import OutdoorScene from "./scenes/OutdoorScene";
 const config = {
   type: Phaser.AUTO,
   parent: "phaser-game",
-  width: window.innerWidth,
-  height: window.innerHeight,
-  mode: Phaser.Scale.RESIZE,
+  scale: {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  },
   physics: {
     default: "arcade",
   },
