@@ -27,7 +27,9 @@ export default class OutdoorScene extends Phaser.Scene {
     // }
 
     this.cameras.main.roundPixels = true;
-
+    this.cameras.main.setBackgroundColor("#ffffff");
+    this.cameras.main.x = -90;
+    this.cameras.main.y = 0;
     // 타일셋 텍스처 필터 모드 설정
     // this.textures
     //   .get("tilesetKey")

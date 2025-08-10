@@ -7,9 +7,8 @@ export const createGame = () => {
     type: Phaser.AUTO,
     parent: "phaser-game",
     scale: {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+      width: 576,
+      height: 992,
     },
     physics: {
       default: "arcade",
