@@ -1,18 +1,21 @@
 import Phaser from "phaser";
+import PreloaderScene from "./scenes/PreloaderScene";
 import OutdoorScene from "./scenes/OutdoorScene";
 
-const config = {
-  type: Phaser.AUTO,
-  parent: "phaser-game",
-  scale: {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-  },
-  physics: {
-    default: "arcade",
-  },
-  scene: [OutdoorScene],
-};
+export const createGame = () => {
+  const config: Phaser.Types.Core.GameConfig = {
+    type: Phaser.AUTO,
+    parent: "phaser-game",
+    scale: {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      // autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
+    physics: {
+      default: "arcade",
+    },
+    scene: [PreloaderScene, OutdoorScene],
+  };
 
-export default new Phaser.Game(config);
+  return new Phaser.Game(config);
+};
