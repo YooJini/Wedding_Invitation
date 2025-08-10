@@ -19,10 +19,10 @@ export default class PreloaderScene extends Phaser.Scene {
     });
 
     // 리소스 로드
-    this.load.image("tiles_city_props", "/tilesets/3_City_Props_16x16.png");
-    this.load.image("tiles_villa", "/tilesets/7_Villas_16x16.png");
+    this.load.image("tiles_city_props", "/tilesets/3_City_Props_32x32.png");
     this.load.image("tiles_jini", "/tilesets/jini.png");
     this.load.image("tiles_hyunsang", "/tilesets/hyunsang.png");
+    this.load.image("tiles_villa", "/tilesets/7_Villas_32x32.png");
     this.load.tilemapTiledJSON("map", "/maps/outdoor.json");
 
     this.load.on("complete", () => {

@@ -9,7 +9,7 @@ export const createGame = () => {
     scale: {
       width: window.innerWidth,
       height: window.innerHeight,
-      // autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+      autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
     },
     physics: {
       default: "arcade",
