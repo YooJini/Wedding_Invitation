@@ -7,7 +7,7 @@ export default class OutdoorScene extends Phaser.Scene {
 
   create() {
     const cam = this.cameras.main;
-    cam.setBackgroundColor("#000");
+    cam.setBackgroundColor("#ffffffff");
     cam.fadeOut(0);
 
     const map = this.make.tilemap({ key: "map" });
@@ -24,20 +24,17 @@ export default class OutdoorScene extends Phaser.Scene {
     }
     if (tileset_villa) {
       map.createLayer("object_0", tileset_villa);
+      map.createLayer("tree", tileset_villa);
     }
 
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.applyVerticalFit();
-    this.scale.on("resize", this.applyVerticalFit, this);
+    // this.scale.on("resize", this.applyVerticalFit, this);
 
     cam.fadeIn(200);
     // if (tileset_jini && tileset_hyunsang) {
     //   map.createLayer("npc", [tileset_jini, tileset_hyunsang]);
     // }
-    // 타일셋 텍스처 필터 모드 설정
-    // this.textures
-    //   .get("tilesetKey")
-    //   ?.setFilter(Phaser.Textures.FilterMode.NEAREST);
   }
 
   applyVerticalFit = () => {
@@ -49,6 +46,6 @@ export default class OutdoorScene extends Phaser.Scene {
     cam.setZoom(zoom);
 
     // 중앙 기준(또는 플레이어를 따라가면 startFollow 사용)
-    cam.centerOn(432 / 2, 768 / 2);
+    // cam.centerOn(432 / 2, 768 / 2);
   };
 }
