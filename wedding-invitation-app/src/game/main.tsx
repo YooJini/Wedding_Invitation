@@ -5,13 +5,15 @@ import OutdoorScene from "./scenes/OutdoorScene";
 export const createGame = () => {
   const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
+    backgroundColor: "#000",
     parent: "phaser-game",
     scale: {
-      width: 576,
-      height: 992,
+      mode: Phaser.Scale.FIT,
     },
-    physics: {
-      default: "arcade",
+
+    render: {
+      pixelArt: true,
+      roundPixels: true,
     },
     scene: [PreloaderScene, OutdoorScene],
   };
