@@ -34,6 +34,7 @@ export default class PreloaderScene extends Phaser.Scene {
       "tiles_clothing_store",
       "/tilesets/21_Clothing_Store_Shadowless_32x32.png"
     );
+    this.load.image("tiles_camping", "/tilesets/11_Camping_32x32.png");
     this.load.tilemapTiledJSON("map", "/maps/outdoor.json");
 
     this.load.on("complete", () => {

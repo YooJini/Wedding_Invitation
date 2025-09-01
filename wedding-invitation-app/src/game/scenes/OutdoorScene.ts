@@ -29,6 +29,7 @@ export default class OutdoorScene extends Phaser.Scene {
       "Clothing_Store_32",
       "tiles_clothing_store"
     );
+    const tileset_camping = map.addTilesetImage("Camping_32", "tiles_camping");
     if (
       !(
         tileset_city &&
@@ -36,7 +37,8 @@ export default class OutdoorScene extends Phaser.Scene {
         tileset_vehicles &&
         tileset_kitchen &&
         tileset_birthday_party &&
-        tileset_clothing_store
+        tileset_clothing_store &&
+        tileset_camping
       )
     ) {
       console.warn(
