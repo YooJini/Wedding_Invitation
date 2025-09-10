@@ -5,6 +5,8 @@ export default class OutdoorScene extends Phaser.Scene {
     super("OutdoorScene");
   }
 
+  player: Phaser.Physics.Arcade.Sprite;
+
   create() {
     const cam = this.cameras.main;
     cam.setBackgroundColor("#ffffffff");
@@ -47,7 +49,7 @@ export default class OutdoorScene extends Phaser.Scene {
       return;
     }
 
-    map.createLayer("background", tileset_city);
+    map.createLayer("background", tileset_city)?.setDepth(0);
     map.createLayer("object_0", [
       tileset_villa,
       tileset_vehicles,
@@ -56,8 +58,12 @@ export default class OutdoorScene extends Phaser.Scene {
     map.createLayer("object_1", [tileset_clothing_store, tileset_vehicles]);
     map.createLayer("tree", tileset_villa);
     map.createLayer("deco", tileset_birthday_party);
+
+    this.player = this.physics.add.sprite(220, 700, "player", 19);
+
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.applyVerticalFit();
+
     // this.scale.on("resize", this.applyVerticalFit, this);
 
     cam.fadeIn(200);

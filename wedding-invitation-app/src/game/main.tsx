@@ -7,6 +7,9 @@ export const createGame = () => {
     type: Phaser.AUTO,
     backgroundColor: "#ffffff",
     parent: "phaser-game",
+    physics: {
+      default: "arcade",
+    },
     scale: {
       width: "100%",
       height: "100%",

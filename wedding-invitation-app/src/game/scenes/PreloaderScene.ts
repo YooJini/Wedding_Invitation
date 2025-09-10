@@ -37,6 +37,10 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image("tiles_camping", "/tilesets/11_Camping_32x32.png");
     this.load.tilemapTiledJSON("map", "/maps/outdoor.json");
 
+    this.load.spritesheet("player", "/sprites/player.png", {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
     this.load.on("complete", () => {
       progressBar.destroy();
       progressBox.destroy();
