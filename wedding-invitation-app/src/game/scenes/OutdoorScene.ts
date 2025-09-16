@@ -60,6 +60,7 @@ export default class OutdoorScene extends Phaser.Scene {
     map.createLayer("deco", tileset_birthday_party);
 
     this.player = this.physics.add.sprite(220, 700, "player", 19);
+    this.player.body.setSize(32, 64);
 
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.applyVerticalFit();
