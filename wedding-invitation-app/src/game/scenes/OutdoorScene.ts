@@ -5,7 +5,7 @@ export default class OutdoorScene extends Phaser.Scene {
     super("OutdoorScene");
   }
 
-  player: Phaser.Physics.Arcade.Sprite;
+  private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
   create() {
     const cam = this.cameras.main;
