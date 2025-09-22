@@ -6,13 +6,18 @@ export default class OutdoorScene extends Phaser.Scene {
   }
 
   private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
 
   create() {
+    // 카메라 설정
     const cam = this.cameras.main;
     cam.setBackgroundColor("#ffffffff");
     cam.fadeOut(0);
 
+    // 타일맵 생성
     const map = this.make.tilemap({ key: "map" });
+
+    // 타일셋 추가
     const tileset_city = map.addTilesetImage(
       "City_Props_32",
       "tiles_city_props"
@@ -32,6 +37,8 @@ export default class OutdoorScene extends Phaser.Scene {
       "tiles_clothing_store"
     );
     const tileset_camping = map.addTilesetImage("Camping_32", "tiles_camping");
+
+    // 레이어 생성 전 타일셋 체크
     if (
       !(
         tileset_city &&
@@ -49,25 +56,69 @@ export default class OutdoorScene extends Phaser.Scene {
       return;
     }
 
-    map.createLayer("background", tileset_city)?.setDepth(0);
-    map.createLayer("object_0", [
+    // 레이어 생성
+    map.createLayer("background", tileset_city);
+    const objectLayer_0 = map.createLayer("object_0", [
       tileset_villa,
       tileset_vehicles,
       tileset_kitchen,
+      tileset_camping,
     ]);
-    map.createLayer("object_1", [tileset_clothing_store, tileset_vehicles]);
-    map.createLayer("tree", tileset_villa);
+    map.createLayer("object_1", [
+      tileset_clothing_store,
+      tileset_vehicles,
+      tileset_villa,
+    ]);
+    map.createLayer("tree", tileset_camping);
     map.createLayer("deco", tileset_birthday_party);
 
+    // 플레이어 생성
     this.player = this.physics.add.sprite(220, 700, "player", 19);
-    this.player.body.setSize(32, 64);
+    this.player.body.setSize(8, 32, true);
+    this.player.setOffset(0, 32);
+    this.player.setCollideWorldBounds(true);
 
+    // 레이어 충돌 설정
+    if (objectLayer_0 === null) {
+      console.error("objectLayer_0 is null, cannot set collisions.");
+      return;
+    }
+
+    objectLayer_0.setCollisionByProperty({ collides: true });
+    this.physics.add.collider(this.player, objectLayer_0);
+
+    // 인풋 설정 (키보드)
+    if (this.input.keyboard) {
+      this.cursors = this.input.keyboard.createCursorKeys();
+    } else {
+      throw new Error("Keyboard input is not available.");
+    }
+
+    // 맵 생성 후 카메라 설정
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.applyVerticalFit();
 
     // this.scale.on("resize", this.applyVerticalFit, this);
 
     cam.fadeIn(200);
+  }
+
+  update() {
+    if (!this.cursors) return;
+
+    if (this.cursors.left.isDown) {
+      console.log("left");
+      this.player.setVelocityX(-200);
+    } else if (this.cursors.right.isDown) {
+      this.player.setVelocityX(200);
+    } else if (this.cursors.up.isDown) {
+      this.player.setVelocityY(-200);
+    } else if (this.cursors.down.isDown) {
+      this.player.setVelocityY(200);
+    } else {
+      this.player.setVelocityX(0);
+      this.player.setVelocityY(0);
+    }
   }
 
   applyVerticalFit = () => {
