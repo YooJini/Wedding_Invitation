@@ -99,6 +99,29 @@
       "y": 0
     },
     {
+      "draworder": "topdown",
+      "id": 9,
+      "name": "trigger",
+      "objects": [
+        {
+          "height": 114,
+          "id": 10,
+          "name": "photo",
+          "rotation": 0,
+          "type": "",
+          "visible": true,
+          "width": 192,
+          "x": 256,
+          "y": 336
+        }
+      ],
+      "opacity": 1,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
       "data": [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -214,8 +237,8 @@
       "y": 0
     }
   ],
-  "nextlayerid": 8,
-  "nextobjectid": 1,
+  "nextlayerid": 10,
+  "nextobjectid": 11,
   "orientation": "orthogonal",
   "renderorder": "right-down",
   "tiledversion": "1.11.2",

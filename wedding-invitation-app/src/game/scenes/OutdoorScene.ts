@@ -1,5 +1,13 @@
 import Phaser from "phaser";
 
+type TriggerObj = {
+  name: string;
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+};
+
 export default class OutdoorScene extends Phaser.Scene {
   constructor() {
     super("OutdoorScene");
@@ -7,6 +15,8 @@ export default class OutdoorScene extends Phaser.Scene {
 
   private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private triggerObjs: TriggerObj[] = [];
+  private activeTrigger: TriggerObj | null = null;
 
   create() {
     // 카메라 설정
@@ -58,7 +68,7 @@ export default class OutdoorScene extends Phaser.Scene {
 
     // 레이어 생성
     map.createLayer("background", tileset_city);
-    const objectLayer_0 = map.createLayer("object_0", [
+    const objectLayer = map.createLayer("object_0", [
       tileset_villa,
       tileset_vehicles,
       tileset_kitchen,
@@ -79,13 +89,24 @@ export default class OutdoorScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
 
     // 레이어 충돌 설정
-    if (objectLayer_0 === null) {
+    if (objectLayer === null) {
       console.error("objectLayer_0 is null, cannot set collisions.");
       return;
     }
 
-    objectLayer_0.setCollisionByProperty({ collides: true });
-    this.physics.add.collider(this.player, objectLayer_0);
+    objectLayer.setCollisionByProperty({ collides: true });
+    this.physics.add.collider(this.player, objectLayer);
+
+    // 타일 좌표 → 월드 좌표로 변환해 트리거 목록 구성
+    const triggerLayer = map.getObjectLayer("trigger");
+    this.triggerObjs = (triggerLayer?.objects ?? []).map((obj) => {
+      const name = obj.name;
+      const startX = obj.x ?? 0;
+      const startY = obj.y ?? 0;
+      const endX = (obj.x ?? 0) + (obj.width ?? 0);
+      const endY = (obj.y ?? 0) + (obj.height ?? 0);
+      return { name, startX, startY, endX, endY };
+    });
 
     // 인풋 설정 (키보드)
     if (this.input.keyboard) {
@@ -106,8 +127,8 @@ export default class OutdoorScene extends Phaser.Scene {
   update() {
     if (!this.cursors) return;
 
+    // 플레이어 이동
     if (this.cursors.left.isDown) {
-      console.log("left");
       this.player.setVelocityX(-200);
     } else if (this.cursors.right.isDown) {
       this.player.setVelocityX(200);
@@ -118,6 +139,28 @@ export default class OutdoorScene extends Phaser.Scene {
     } else {
       this.player.setVelocityX(0);
       this.player.setVelocityY(0);
+    }
+
+    // 트리거 체크
+    const playerX = this.player.x;
+    const playerY = this.player.y;
+    const triggered = this.triggerObjs.find(
+      (trigger) =>
+        playerX >= trigger.startX &&
+        playerX <= trigger.endX &&
+        playerY >= trigger.startY &&
+        playerY <= trigger.endY
+    );
+    if (triggered) {
+      if (this.activeTrigger?.name !== triggered.name) {
+        console.log(`Entered trigger: ${triggered.name}`);
+        this.activeTrigger = triggered;
+      }
+    } else {
+      if (this.activeTrigger) {
+        console.log(`Exited trigger: ${this.activeTrigger.name}`);
+        this.activeTrigger = null;
+      }
     }
   }
 
