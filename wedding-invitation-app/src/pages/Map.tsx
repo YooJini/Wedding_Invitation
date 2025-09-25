@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { createGame } from "../game/main";
+import Gallery from "../components/Gallery";
+import { useGameUIStore } from "../stores/useGameUIStore";
 
 const Map = () => {
+  const { galleryOpen } = useGameUIStore();
+
   useEffect(() => {
     const game = createGame();
 
@@ -10,7 +14,16 @@ const Map = () => {
     };
   }, []);
 
-  return <div id="phaser-game" />;
+  return (
+    <>
+      <div id="phaser-game" />
+      {galleryOpen && (
+        <Gallery
+          onClose={() => useGameUIStore.setState({ galleryOpen: false })}
+        />
+      )}
+    </>
+  );
 };
 
 export default Map;

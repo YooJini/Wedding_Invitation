@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { useGameUIStore } from "../../stores/useGameUIStore";
 
 type TriggerObj = {
   name: string;
@@ -155,6 +156,7 @@ export default class OutdoorScene extends Phaser.Scene {
       if (this.activeTrigger?.name !== triggered.name) {
         console.log(`Entered trigger: ${triggered.name}`);
         this.activeTrigger = triggered;
+        useGameUIStore.getState().openGallery();
       }
     } else {
       if (this.activeTrigger) {
