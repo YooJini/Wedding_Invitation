@@ -39,7 +39,7 @@ export default class HallScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.player.setCollideWorldBounds(true);
 
-    this.playerController = new PlayerController(this, this.player);
+    this.playerController = new PlayerController(this.player);
     this.playerController.setup();
 
     // 레이어 생성 전 타일셋 체크

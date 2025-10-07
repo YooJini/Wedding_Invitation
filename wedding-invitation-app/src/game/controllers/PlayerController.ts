@@ -1,11 +1,11 @@
 import Phaser from "phaser";
 
 export class PlayerController {
-  private scene: Phaser.Scene;
+  //   private scene: Phaser.Scene;
   private player: Phaser.Physics.Arcade.Sprite;
 
-  constructor(scene: Phaser.Scene, player: Phaser.Physics.Arcade.Sprite) {
-    this.scene = scene;
+  constructor(player: Phaser.Physics.Arcade.Sprite) {
+    // this.scene = scene;
     this.player = player;
   }
 

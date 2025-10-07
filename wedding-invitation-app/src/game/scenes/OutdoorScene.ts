@@ -92,7 +92,7 @@ export default class OutdoorScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.player.setCollideWorldBounds(true);
 
-    this.playerController = new PlayerController(this, this.player);
+    this.playerController = new PlayerController(this.player);
     this.playerController.setup();
 
     // 레이어 충돌 설정
