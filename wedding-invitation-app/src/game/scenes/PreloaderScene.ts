@@ -35,7 +35,17 @@ export default class PreloaderScene extends Phaser.Scene {
       "/tilesets/21_Clothing_Store_Shadowless_32x32.png"
     );
     this.load.image("tiles_camping", "/tilesets/11_Camping_32x32.png");
+    this.load.image(
+      "tiles_icecream",
+      "/tilesets/24_Ice_Cream_Shop_Shadowless_32x32.png"
+    );
+    this.load.image(
+      "tiles_grocery",
+      "/tilesets/16_Grocery_store_Shadowless_32x32.png"
+    );
+
     this.load.tilemapTiledJSON("map", "/maps/outdoor.json");
+    this.load.tilemapTiledJSON("map_hall", "/maps/hall.json");
 
     this.load.spritesheet("player", "/sprites/player.png", {
       frameWidth: 32,

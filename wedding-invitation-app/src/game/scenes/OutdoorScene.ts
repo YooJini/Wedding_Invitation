@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { useGameUIStore } from "../../stores/useGameUIStore";
 import { useTooltipStore } from "../../stores/useTooltipStore";
 import { worldToScreen } from "../utils/phaserUtils";
+import { PlayerController } from "../controllers/PlayerController";
 
 type TriggerObj = {
   name: string;
@@ -20,6 +21,7 @@ export default class OutdoorScene extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   private triggerObjs: TriggerObj[] = [];
   private activeTrigger: TriggerObj | null = null;
+  private playerController!: PlayerController;
 
   create() {
     // 카메라 설정
@@ -87,10 +89,11 @@ export default class OutdoorScene extends Phaser.Scene {
 
     // 플레이어 생성
     this.player = this.physics.add.sprite(220, 700, "player", 19);
-    this.player.body.setSize(8, 32, true);
-    this.player.setOffset(16, 32);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.player.setCollideWorldBounds(true);
+
+    this.playerController = new PlayerController(this, this.player);
+    this.playerController.setup();
 
     // 레이어 충돌 설정
     if (objectLayer === null) {
@@ -127,21 +130,7 @@ export default class OutdoorScene extends Phaser.Scene {
   }
 
   update() {
-    if (!this.cursors) return;
-
-    // 플레이어 이동
-    if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-200);
-    } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(200);
-    } else if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-200);
-    } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(200);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.setVelocityY(0);
-    }
+    this.playerController.handleMovement(this.cursors);
 
     // 트리거 체크
     const playerX = this.player.x;
@@ -167,7 +156,7 @@ export default class OutdoorScene extends Phaser.Scene {
     }
   }
 
-  applyVerticalFit = () => {
+  applyVerticalFit() {
     const { height } = this.scale.gameSize;
     const cam = this.cameras.main;
 
@@ -176,10 +165,10 @@ export default class OutdoorScene extends Phaser.Scene {
     cam.setZoom(zoom);
 
     cam.startFollow(this.player, true, 0.1, 0.1);
-  };
+  }
 
   // 트리거 이벤트
-  handleTriggerEvent = (triggerName: string) => {
+  handleTriggerEvent(triggerName: string) {
     const { x, y } = worldToScreen(this, this.player.x, this.player.y - 40);
 
     switch (triggerName) {
@@ -209,5 +198,5 @@ export default class OutdoorScene extends Phaser.Scene {
         useTooltipStore.getState().hideTooltip();
         break;
     }
-  };
+  }
 }
