@@ -92,28 +92,30 @@ const PhotoList = styled.div`
   }
 `;
 
-const Gallery = ({ onClose }: { onClose: () => void }) => (
-  <Overlay>
-    <Content>
-      <CurrentPhoto>
-        <img src="/photos/photo_1.jpg" alt="current photo"></img>
-      </CurrentPhoto>
-      <PhotoList>
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-        <PhotoListItem />
-      </PhotoList>
-      <button onClick={onClose}>닫기</button>
-    </Content>
-  </Overlay>
-);
+const Gallery = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <Overlay>
+      <Content>
+        <CurrentPhoto>
+          <img src="/photos/photo_1.jpg" alt="current photo"></img>
+        </CurrentPhoto>
+        <PhotoList>
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+          <PhotoListItem />
+        </PhotoList>
+        <button onClick={onClose}>닫기</button>
+      </Content>
+    </Overlay>
+  );
+};
 
 export default Gallery;

@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { useGameUIStore } from "../../stores/useGameUIStore";
+import { useTooltipStore } from "../../stores/useTooltipStore";
 
 type TriggerObj = {
   name: string;
@@ -86,7 +87,8 @@ export default class OutdoorScene extends Phaser.Scene {
     // 플레이어 생성
     this.player = this.physics.add.sprite(220, 700, "player", 19);
     this.player.body.setSize(8, 32, true);
-    this.player.setOffset(0, 32);
+    this.player.setOffset(16, 32);
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.player.setCollideWorldBounds(true);
 
     // 레이어 충돌 설정
@@ -118,10 +120,8 @@ export default class OutdoorScene extends Phaser.Scene {
 
     // 맵 생성 후 카메라 설정
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
     this.applyVerticalFit();
-
-    // this.scale.on("resize", this.applyVerticalFit, this);
-
     cam.fadeIn(200);
   }
 
@@ -154,14 +154,14 @@ export default class OutdoorScene extends Phaser.Scene {
     );
     if (triggered) {
       if (this.activeTrigger?.name !== triggered.name) {
-        console.log(`Entered trigger: ${triggered.name}`);
+        this.handleTriggerEvent(triggered.name);
         this.activeTrigger = triggered;
-        useGameUIStore.getState().openGallery();
       }
     } else {
       if (this.activeTrigger) {
         console.log(`Exited trigger: ${this.activeTrigger.name}`);
         this.activeTrigger = null;
+        useTooltipStore.getState().hideTooltip();
       }
     }
   }
@@ -174,7 +174,43 @@ export default class OutdoorScene extends Phaser.Scene {
     const zoom = height / 768;
     cam.setZoom(zoom);
 
-    // 중앙 기준(또는 플레이어를 따라가면 startFollow 사용)
-    // cam.centerOn(432 / 2, 768 / 2);
+    cam.startFollow(this.player, true, 0.1, 0.1);
+  };
+
+  // 트리거 이벤트
+  handleTriggerEvent = (triggerName: string) => {
+    console.log(`Trigger event handled: ${triggerName}`);
+    switch (triggerName) {
+      case "photo":
+        useGameUIStore.getState().openGallery();
+        break;
+      case "coffee":
+        // 예시: 툴팁 노출 (플레이어 위치 기준)
+        useTooltipStore.getState().showTooltip(
+          "커피 음료 어쩌구",
+          this.player.x,
+          this.player.y - 40 // 플레이어 위쪽에 표시
+        );
+        break;
+      case "door":
+        useTooltipStore
+          .getState()
+          .showTooltip("예식장 내부 어쩌꾸", this.player.x, this.player.y - 40);
+        break;
+      case "table":
+        useTooltipStore
+          .getState()
+          .showTooltip("테이블 어쩌구.", this.player.x, this.player.y - 40);
+        break;
+      case "notice":
+        useTooltipStore
+          .getState()
+          .showTooltip("공지사항", this.player.x, this.player.y - 40);
+        break;
+      // ...etc
+      default:
+        useTooltipStore.getState().hideTooltip();
+        break;
+    }
   };
 }

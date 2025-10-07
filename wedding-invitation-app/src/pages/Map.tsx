@@ -44,7 +44,6 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   max-width: 600px;
-  max-height: 800px;
   margin: 0 auto;
   overflow: hidden;
 `;
