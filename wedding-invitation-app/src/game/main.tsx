@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import PreloaderScene from "./scenes/PreloaderScene";
 import OutdoorScene from "./scenes/OutdoorScene";
+import HallScene from "./scenes/HallScene";
 
 export const createGame = () => {
   const config: Phaser.Types.Core.GameConfig = {
@@ -20,7 +21,7 @@ export const createGame = () => {
       pixelArt: true,
       roundPixels: true,
     },
-    scene: [PreloaderScene, OutdoorScene],
+    scene: [PreloaderScene, OutdoorScene, HallScene],
   };
 
   return new Phaser.Game(config);

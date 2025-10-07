@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { useGameUIStore } from "../../stores/useGameUIStore";
 import { useTooltipStore } from "../../stores/useTooltipStore";
+import { worldToScreen } from "../utils/phaserUtils";
 
 type TriggerObj = {
   name: string;
@@ -179,33 +180,29 @@ export default class OutdoorScene extends Phaser.Scene {
 
   // 트리거 이벤트
   handleTriggerEvent = (triggerName: string) => {
-    console.log(`Trigger event handled: ${triggerName}`);
+    const { x, y } = worldToScreen(this, this.player.x, this.player.y - 40);
+
     switch (triggerName) {
+      case "door":
+        this.scene.start("HallScene");
+        break;
       case "photo":
         useGameUIStore.getState().openGallery();
         break;
       case "coffee":
         // 예시: 툴팁 노출 (플레이어 위치 기준)
+
         useTooltipStore.getState().showTooltip(
           "커피 음료 어쩌구",
-          this.player.x,
-          this.player.y - 40 // 플레이어 위쪽에 표시
+          x,
+          y // 플레이어 위쪽에 표시
         );
         break;
-      case "door":
-        useTooltipStore
-          .getState()
-          .showTooltip("예식장 내부 어쩌꾸", this.player.x, this.player.y - 40);
-        break;
       case "table":
-        useTooltipStore
-          .getState()
-          .showTooltip("테이블 어쩌구.", this.player.x, this.player.y - 40);
+        useTooltipStore.getState().showTooltip("테이블 어쩌구.", x, y);
         break;
       case "notice":
-        useTooltipStore
-          .getState()
-          .showTooltip("공지사항", this.player.x, this.player.y - 40);
+        useTooltipStore.getState().showTooltip("공지사항", x, y);
         break;
       // ...etc
       default:
