@@ -18,7 +18,6 @@ export default class OutdoorScene extends Phaser.Scene {
   }
 
   private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
-  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   private triggerObjs: TriggerObj[] = [];
   private activeTrigger: TriggerObj | null = null;
   private playerController!: PlayerController;
@@ -114,13 +113,6 @@ export default class OutdoorScene extends Phaser.Scene {
       const endY = (obj.y ?? 0) + (obj.height ?? 0);
       return { name, startX, startY, endX, endY };
     });
-
-    // 인풋 설정 (키보드)
-    if (this.input.keyboard) {
-      this.cursors = this.input.keyboard.createCursorKeys();
-    } else {
-      throw new Error("Keyboard input is not available.");
-    }
 
     // 맵 생성 후 카메라 설정
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);

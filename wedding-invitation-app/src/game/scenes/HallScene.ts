@@ -8,7 +8,6 @@ export default class HallScene extends Phaser.Scene {
 
   private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   private playerController!: PlayerController;
-  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
 
   create() {
     // 카메라 설정
@@ -64,13 +63,6 @@ export default class HallScene extends Phaser.Scene {
     // ...카메라, 충돌 등 추가 설정...
     // 맵 생성 후 카메라 설정
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-    // 인풋 설정 (키보드)
-    if (this.input.keyboard) {
-      this.cursors = this.input.keyboard.createCursorKeys();
-    } else {
-      throw new Error("Keyboard input is not available.");
-    }
 
     this.applyVerticalFit();
     cam.fadeIn(200);
