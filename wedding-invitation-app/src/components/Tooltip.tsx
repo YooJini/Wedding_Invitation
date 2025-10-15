@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 type TooltipProps = {
   text: string;
-  x: number; // 화면 좌표(px)
-  y: number; // 화면 좌표(px)
+  x: number;
+  y: number;
   visible?: boolean;
   maxWidth?: number;
+  children?: React.ReactNode;
 };
 
 const Tooltip = ({
@@ -14,6 +15,7 @@ const Tooltip = ({
   y,
   visible = true,
   maxWidth = 220,
+  children,
 }: TooltipProps) => {
   return (
     <TooltipStyle
@@ -21,13 +23,14 @@ const Tooltip = ({
       data-visible={visible ? "1" : "0"}
     >
       {text}
+      {children}
     </TooltipStyle>
   );
 };
 
 const TooltipStyle = styled.div`
   position: absolute;
-  transform: translate(-50%, calc(-100% - 12px)); /* 앵커 위에 배치 */
+  transform: translate(-50%, calc(-100% - 12px));
   padding: 8px 12px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.88);
@@ -37,7 +40,7 @@ const TooltipStyle = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
   white-space: normal;
-  pointer-events: none;
+  pointer-events: auto; /* 수정: 클릭 가능하게 */
   opacity: 0;
   transition: opacity 0.18s ease, transform 0.18s ease;
 

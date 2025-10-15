@@ -1,19 +1,32 @@
 import { create } from "zustand";
 
-type TooltipState = {
+type TooltipType = "gallery" | "notice" | "custom";
+
+interface TooltipState {
   visible: boolean;
   text: string;
   x: number;
   y: number;
-  showTooltip: (text: string, x: number, y: number) => void;
+  type: TooltipType;
+  onConfirm?: () => void;
+  showTooltip: (params: {
+    text: string;
+    x: number;
+    y: number;
+    type?: TooltipType;
+    onConfirm?: () => void;
+  }) => void;
   hideTooltip: () => void;
-};
+}
 
 export const useTooltipStore = create<TooltipState>((set) => ({
   visible: false,
   text: "",
   x: 0,
   y: 0,
-  showTooltip: (text, x, y) => set({ visible: true, text, x, y }),
-  hideTooltip: () => set({ visible: false }),
+  type: "custom",
+  onConfirm: undefined,
+  showTooltip: ({ text, x, y, type = "custom", onConfirm }) =>
+    set({ visible: true, text, x, y, type, onConfirm }),
+  hideTooltip: () => set({ visible: false, onConfirm: undefined }),
 }));

@@ -168,22 +168,31 @@ export default class OutdoorScene extends Phaser.Scene {
         this.scene.start("HallScene");
         break;
       case "photo":
-        useGameUIStore.getState().openGallery();
+        useTooltipStore.getState().showTooltip({
+          text: "사진관 어쩌구",
+          x,
+          y,
+          onConfirm: () => {
+            useGameUIStore.getState().openGallery();
+          },
+        });
         break;
       case "coffee":
         // 예시: 툴팁 노출 (플레이어 위치 기준)
 
-        useTooltipStore.getState().showTooltip(
-          "커피 음료 어쩌구",
+        useTooltipStore.getState().showTooltip({
+          text: "커피 음료 어쩌구",
           x,
-          y // 플레이어 위쪽에 표시
-        );
+          y, // 플레이어 위쪽에 표시
+        });
         break;
       case "table":
-        useTooltipStore.getState().showTooltip("테이블 어쩌구.", x, y);
+        useTooltipStore
+          .getState()
+          .showTooltip({ text: "테이블 어쩌구.", x, y });
         break;
       case "notice":
-        useTooltipStore.getState().showTooltip("공지사항", x, y);
+        useTooltipStore.getState().showTooltip({ text: "공지사항", x, y });
         break;
       // ...etc
       default:
