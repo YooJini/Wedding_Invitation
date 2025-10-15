@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useGameControllerStore } from "../stores/useGameControllerStore";
-import { BsDpadFill } from "react-icons/bs";
+import { BsDpad } from "react-icons/bs";
 
 const DPadWrapper = styled.div`
   position: relative;
@@ -24,6 +24,7 @@ const DirButton = styled.button<{ pos: string }>`
   color: transparent;
   background: transparent;
   cursor: pointer;
+  user-select: none;
   &:active {
     opacity: 0.6;
   }
@@ -40,7 +41,7 @@ const ControllerUI = () => {
   return (
     <DPadWrapper>
       <DPadBg>
-        <BsDpadFill size={100} fill="#b6b6b6" />
+        <BsDpad size={100} fill="#e4e4e4" />
       </DPadBg>
       <DirButton
         pos="up"
