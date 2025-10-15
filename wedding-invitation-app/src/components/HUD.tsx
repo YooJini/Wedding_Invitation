@@ -6,7 +6,6 @@ import { useTooltipStore } from "../stores/useTooltipStore";
 const HUD = () => {
   const { visible, text, x, y } = useTooltipStore();
 
-  // Phaser 좌표 → 화면 좌표 변환 필요 (예시로 x, y 그대로 사용)
   return (
     <Overlay>
       <ControllerWrapper>
@@ -31,7 +30,6 @@ const ControllerWrapper = styled.div`
   right: 32px;
   bottom: 32px;
   pointer-events: auto;
-  background-color: white;
 `;
 
 export default HUD;

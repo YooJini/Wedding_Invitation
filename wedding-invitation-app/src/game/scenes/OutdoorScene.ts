@@ -130,7 +130,7 @@ export default class OutdoorScene extends Phaser.Scene {
   }
 
   update() {
-    this.playerController.handleMovement(this.cursors);
+    this.playerController.handleMovement();
 
     // 트리거 체크
     const playerX = this.player.x;

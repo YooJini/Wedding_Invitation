@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { useGameControllerStore } from "../../stores/useGameControllerStore";
 
 export class PlayerController {
   //   private scene: Phaser.Scene;
@@ -20,22 +21,31 @@ export class PlayerController {
     // ...etc
   }
 
-  handleMovement(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-    // 이동 및 애니메이션 처리
-    if (!cursors) return;
+  handleMovement() {
+    const direction = useGameControllerStore.getState().direction;
 
-    // 플레이어 이동
-    if (cursors.left.isDown) {
-      this.player.setVelocityX(-200);
-    } else if (cursors.right.isDown) {
-      this.player.setVelocityX(200);
-    } else if (cursors.up.isDown) {
-      this.player.setVelocityY(-200);
-    } else if (cursors.down.isDown) {
-      this.player.setVelocityY(200);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.setVelocityY(0);
+    // 방향에 따라 이동
+    switch (direction) {
+      case "left":
+        this.player.setVelocityX(-200);
+        this.player.setVelocityY(0);
+        break;
+      case "right":
+        this.player.setVelocityX(200);
+        this.player.setVelocityY(0);
+        break;
+      case "up":
+        this.player.setVelocityY(-200);
+        this.player.setVelocityX(0);
+        break;
+      case "down":
+        this.player.setVelocityY(200);
+        this.player.setVelocityX(0);
+        break;
+      default:
+        this.player.setVelocityX(0);
+        this.player.setVelocityY(0);
+        break;
     }
   }
 

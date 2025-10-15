@@ -77,7 +77,7 @@ export default class HallScene extends Phaser.Scene {
   }
 
   update() {
-    this.playerController.handleMovement(this.cursors);
+    this.playerController.handleMovement();
   }
   applyVerticalFit = () => {
     const { height } = this.scale.gameSize;
