@@ -14,6 +14,8 @@ const DPadBg = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  background: "rgba(25,20,15,0.9)";
+  box-shadow: "0 8px 20px rgba(0,0,0,0.5)";
   pointer-events: none;
 `;
 
@@ -22,7 +24,8 @@ const DirButton = styled.button<{ pos: string }>`
   width: 30px;
   height: 30px;
   color: transparent;
-  background: transparent;
+  background: "rgba(250,240,220,0.98)";
+  box-shadow: "0 8px 20px rgba(0,0,0,0.5)";
   cursor: pointer;
   user-select: none;
   &:active {
@@ -41,7 +44,7 @@ const ControllerUI = () => {
   return (
     <DPadWrapper>
       <DPadBg>
-        <BsDpad size={100} fill="#e4e4e4" />
+        <BsDpad size={100} color="#FFF8E1" />
       </DPadBg>
       <DirButton
         pos="up"
