@@ -15,11 +15,17 @@ const Intro = () => {
   return (
     <IntroStyles>
       <div className="content">
-        <h1>Title</h1>
-        <p>This is a wedding invitation app.</p>
+        <h2>jini & hyunsang</h2>
+        <p>2025년 11월 8일 토요일 오후 5시</p>
+
         <div className="buttons">
-          <button onClick={handleQuickView}> 간단히 보기</button>
-          <button onClick={handleMapView}> 맵으로 보기</button>
+          <button onClick={handleMapView}>START</button>
+          <button
+            style={{ backgroundColor: "transparent" }}
+            onClick={handleQuickView}
+          >
+            초대장 보기
+          </button>
         </div>
       </div>
     </IntroStyles>

@@ -8,6 +8,10 @@ const Invitation = () => {
     window.history.back();
   };
 
+  // TODO
+  // 교통 정보
+  // 식사 안내
+
   return (
     <InvitationStyles>
       <div className="content">
