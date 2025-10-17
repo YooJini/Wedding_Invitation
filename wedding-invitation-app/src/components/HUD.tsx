@@ -26,7 +26,7 @@ const HUD = () => {
       </ControllerWrapper>
       {visible && (
         <Tooltip text={text} x={x} y={y}>
-          {onConfirm && <button onClick={handleConfirm}>확인</button>}
+          {onConfirm && <button onClick={handleConfirm}>보기</button>}
         </Tooltip>
       )}
     </Overlay>
