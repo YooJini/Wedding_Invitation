@@ -32,6 +32,12 @@ export default class HallScene extends Phaser.Scene {
       "Ice_Cream_Shop_32",
       "tiles_icecream"
     );
+    const tileset_candle = map.addTilesetImage(
+      "animated_wall_candle_32x32",
+      "tiles_candle"
+    );
+    const tileset_jini = map.addTilesetImage("jini", "tiles_jini");
+    const tileset_hyunsang = map.addTilesetImage("hyunsang", "tiles_hyunsang");
 
     // 플레이어 생성
     this.player = this.physics.add.sprite(220, 700, "player", 19);
@@ -42,7 +48,16 @@ export default class HallScene extends Phaser.Scene {
     this.playerController.setup();
 
     // 레이어 생성 전 타일셋 체크
-    if (!(tileset_city && tileset_grocery && tileset_icecream)) {
+    if (
+      !(
+        tileset_city &&
+        tileset_grocery &&
+        tileset_icecream &&
+        tileset_candle &&
+        tileset_jini &&
+        tileset_hyunsang
+      )
+    ) {
       console.warn(
         "Some tilesets are missing, outdoor scene may not render correctly."
       );
@@ -51,8 +66,13 @@ export default class HallScene extends Phaser.Scene {
 
     // 레이어 생성
     map.createLayer("background", tileset_city);
-    map.createLayer("object_0", [tileset_grocery, tileset_icecream]);
+    map.createLayer("object_0", [
+      tileset_grocery,
+      tileset_icecream,
+      tileset_candle,
+    ]);
     map.createLayer("object_1", [tileset_grocery]);
+    map.createLayer("npc", [tileset_jini, tileset_hyunsang]);
 
     // 기존 OutdoorScene과 동일한 설정 적용
     this.player.body.setSize(8, 32, true);

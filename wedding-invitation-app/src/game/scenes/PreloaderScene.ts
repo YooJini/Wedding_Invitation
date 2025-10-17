@@ -44,6 +44,10 @@ export default class PreloaderScene extends Phaser.Scene {
       "/tilesets/16_Grocery_store_Shadowless_32x32.png"
     );
 
+    this.load.image("tiles_candle", "/tilesets/animated_wall_candle_32x32.png");
+    this.load.image("tiles_jini", "/tilesets/jini.png");
+    this.load.image("tiles_hyunsang", "/tilesets/hyunsang.png");
+
     this.load.tilemapTiledJSON("map", "/maps/outdoor.json");
     this.load.tilemapTiledJSON("map_hall", "/maps/hall.json");
 
