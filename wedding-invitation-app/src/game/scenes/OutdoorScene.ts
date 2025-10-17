@@ -51,6 +51,8 @@ export default class OutdoorScene extends Phaser.Scene {
       "tiles_clothing_store"
     );
     const tileset_camping = map.addTilesetImage("Camping_32", "tiles_camping");
+    const tileset_jini = map.addTilesetImage("jini", "tiles_jini");
+    const tileset_hyunsang = map.addTilesetImage("hyunsang", "tiles_hyunsang");
 
     // 레이어 생성 전 타일셋 체크
     if (
@@ -61,7 +63,9 @@ export default class OutdoorScene extends Phaser.Scene {
         tileset_kitchen &&
         tileset_birthday_party &&
         tileset_clothing_store &&
-        tileset_camping
+        tileset_camping &&
+        tileset_jini &&
+        tileset_hyunsang
       )
     ) {
       console.warn(
@@ -84,6 +88,7 @@ export default class OutdoorScene extends Phaser.Scene {
       tileset_villa,
     ]);
     map.createLayer("tree", tileset_camping);
+    map.createLayer("npc", [tileset_jini, tileset_hyunsang]);
     map.createLayer("deco", tileset_birthday_party);
 
     // 플레이어 생성
@@ -169,7 +174,7 @@ export default class OutdoorScene extends Phaser.Scene {
         break;
       case "photo":
         useTooltipStore.getState().showTooltip({
-          text: "사진관 어쩌구",
+          text: "오늘의 주인공들 보고 가세요! 📸",
           x,
           y,
           onConfirm: () => {
@@ -179,20 +184,28 @@ export default class OutdoorScene extends Phaser.Scene {
         break;
       case "coffee":
         // 예시: 툴팁 노출 (플레이어 위치 기준)
-
         useTooltipStore.getState().showTooltip({
-          text: "커피 음료 어쩌구",
+          text: "신랑 신부는 떨고 있겠지만.. 여러분은 여유롭게 한 잔 어떠세요? 😂 두 잔, 세 잔 드시면 더 좋아요 맘껏 드세요! ☕",
           x,
           y, // 플레이어 위쪽에 표시
         });
         break;
-      case "table":
-        useTooltipStore
-          .getState()
-          .showTooltip({ text: "테이블 어쩌구.", x, y });
+      case "npc":
+        useTooltipStore.getState().showTooltip({
+          text: "저희의 결혼식에 와주셔서 진심으로 감사드립니다 💛",
+          x,
+          y,
+        });
         break;
       case "notice":
-        useTooltipStore.getState().showTooltip({ text: "공지사항", x, y });
+        useTooltipStore.getState().showTooltip({
+          text: "📢 공지사항 두 사람이 드디어 결혼합니다. 자세한 내용은 초대장에서 확인해주세요 💌 ",
+          x,
+          y,
+          onConfirm: () => {
+            useGameUIStore.getState().openGallery();
+          },
+        });
         break;
       // ...etc
       default:
