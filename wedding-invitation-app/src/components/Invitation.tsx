@@ -1,29 +1,32 @@
 import styled from "styled-components";
+import Overlay from "./Overlay";
+import { useEffect } from "react";
 
-const Invitation = () => {
-  const handleClickBack = () => {
-    window.history.back();
-  };
-
+const Invitation = ({ onClose }: { onClose: () => void }) => {
   // TODO
   // 교통 정보
   // 식사 안내
 
+  useEffect(() => {
+    console.log("초대장 컴포넌트");
+  });
   return (
-    <InvitationStyles>
-      <div className="content">
-        <button className="back-button" onClick={handleClickBack}>
-          X
-        </button>
-        <h1>초대장</h1>
-        <h2>진이 👰🩷🤵 현상</h2>
-        <p>진이와 현상이의 결혼식에 초대합니다.</p>
-        <div className="details">
-          <p>언제: 2025년 11월 8일 토요일 오후 5시</p>
-          <p>어디서: 수원 라온몽드 하우스 웨딩</p>
+    <Overlay>
+      <InvitationStyles>
+        <div className="content">
+          <button className="back-button" onClick={onClose}>
+            X
+          </button>
+          <h1>초대장</h1>
+          <h2>진이 👰🩷🤵 현상</h2>
+          <p>진이와 현상이의 결혼식에 초대합니다.</p>
+          <div className="details">
+            <p>언제: 2025년 11월 8일 토요일 오후 5시</p>
+            <p>어디서: 수원 라온몽드 하우스 웨딩</p>
+          </div>
         </div>
-      </div>
-    </InvitationStyles>
+      </InvitationStyles>
+    </Overlay>
   );
 };
 
@@ -35,8 +38,9 @@ const InvitationStyles = styled.div`
   flex-direction: column;
   /* align-items: center; */
   /* justify-content: center; */
-  width: 100vw;
-  height: 100vh;
+  width: 85%;
+  height: 70%;
+  border-radius: 8px;
   overflow-y: scroll;
   background-color: #fefff3;
 

@@ -34,7 +34,7 @@ const TooltipStyle = styled.div`
   min-width: 120px;
   padding: 8px 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.88);
+  background: #fefff3d9;
   color: #333;
   font-size: 14px;
   line-height: 1.3;

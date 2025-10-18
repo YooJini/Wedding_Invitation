@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import PhotoListItem from "./PhotoListItem";
-
-const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
-`;
+import Overlay from "./Overlay";
 
 const Content = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { useGameUIStore } from "../../stores/useGameUIStore";
+import { openGallery, openInvitation } from "../../stores/useGameUIStore";
 import { useTooltipStore } from "../../stores/useTooltipStore";
 import { worldToScreen } from "../utils/phaserUtils";
 import { PlayerController } from "../controllers/PlayerController";
@@ -13,6 +13,14 @@ type TriggerObj = {
 };
 
 export default class OutdoorScene extends Phaser.Scene {
+  private initialPlayerPos?: { x: number; y: number } | null = null;
+
+  init(data?: { playerX?: number; playerY?: number }) {
+    this.initialPlayerPos = data
+      ? { x: data.playerX ?? 0, y: data.playerY ?? 0 }
+      : null;
+  }
+
   constructor() {
     super("OutdoorScene");
   }
@@ -91,8 +99,16 @@ export default class OutdoorScene extends Phaser.Scene {
     map.createLayer("npc", [tileset_jini, tileset_hyunsang]);
     map.createLayer("deco", tileset_birthday_party);
 
-    // 플레이어 생성
-    this.player = this.physics.add.sprite(220, 700, "player", 19);
+    // 플레이어 생성 (이전 씬에서 전달된 좌표가 있으면 사용)
+    const startX =
+      this.initialPlayerPos && this.initialPlayerPos.x !== 0
+        ? this.initialPlayerPos.x
+        : 220;
+    const startY =
+      this.initialPlayerPos && this.initialPlayerPos.y !== 0
+        ? this.initialPlayerPos.y
+        : 700;
+    this.player = this.physics.add.sprite(startX, startY, "player", 19);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.player.setCollideWorldBounds(true);
 
@@ -178,7 +194,7 @@ export default class OutdoorScene extends Phaser.Scene {
           x,
           y,
           onConfirm: () => {
-            useGameUIStore.getState().openGallery();
+            openGallery();
           },
         });
         break;
@@ -203,7 +219,7 @@ export default class OutdoorScene extends Phaser.Scene {
           x,
           y,
           onConfirm: () => {
-            useGameUIStore.getState().openGallery();
+            openInvitation();
           },
         });
         break;

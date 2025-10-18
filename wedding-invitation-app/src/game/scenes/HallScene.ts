@@ -1,5 +1,14 @@
 import Phaser from "phaser";
 import { PlayerController } from "../controllers/PlayerController";
+import { useTooltipStore } from "../../stores/useTooltipStore";
+
+type TriggerObj = {
+  name: string;
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+};
 
 export default class HallScene extends Phaser.Scene {
   constructor() {
@@ -8,6 +17,8 @@ export default class HallScene extends Phaser.Scene {
 
   private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   private playerController!: PlayerController;
+  private triggerObjs: TriggerObj[] = [];
+  private activeTrigger: TriggerObj | null = null;
 
   create() {
     // 카메라 설정
@@ -74,9 +85,18 @@ export default class HallScene extends Phaser.Scene {
     map.createLayer("object_1", [tileset_grocery]);
     map.createLayer("npc", [tileset_jini, tileset_hyunsang]);
 
+    // 타일 좌표 → 월드 좌표로 변환해 트리거 목록 구성
+    const triggerLayer = map.getObjectLayer("trigger");
+    this.triggerObjs = (triggerLayer?.objects ?? []).map((obj) => {
+      const name = obj.name;
+      const startX = obj.x ?? 0;
+      const startY = obj.y ?? 0;
+      const endX = (obj.x ?? 0) + (obj.width ?? 0);
+      const endY = (obj.y ?? 0) + (obj.height ?? 0);
+      return { name, startX, startY, endX, endY };
+    });
+
     // 기존 OutdoorScene과 동일한 설정 적용
-    this.player.body.setSize(8, 32, true);
-    this.player.setOffset(16, 32);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.player.setCollideWorldBounds(true);
     this.player.setDepth(10);
@@ -90,6 +110,29 @@ export default class HallScene extends Phaser.Scene {
 
   update() {
     this.playerController.handleMovement();
+
+    // 트리거 체크
+    const playerX = this.player.x;
+    const playerY = this.player.y;
+    const triggered = this.triggerObjs.find(
+      (trigger) =>
+        playerX >= trigger.startX &&
+        playerX <= trigger.endX &&
+        playerY >= trigger.startY &&
+        playerY <= trigger.endY
+    );
+    if (triggered) {
+      if (this.activeTrigger?.name !== triggered.name) {
+        this.handleTriggerEvent(triggered.name);
+        this.activeTrigger = triggered;
+      }
+    } else {
+      if (this.activeTrigger) {
+        console.log(`Exited trigger: ${this.activeTrigger.name}`);
+        this.activeTrigger = null;
+        useTooltipStore.getState().hideTooltip();
+      }
+    }
   }
   applyVerticalFit = () => {
     const { height } = this.scale.gameSize;
@@ -101,4 +144,17 @@ export default class HallScene extends Phaser.Scene {
 
     cam.startFollow(this.player, true, 0.1, 0.1);
   };
+
+  // 트리거 이벤트
+  handleTriggerEvent(triggerName: string) {
+    switch (triggerName) {
+      case "exit":
+        // 현재 플레이어 위치(또는 원하는 스폰 지점)를 OutdoorScene으로 전달
+        this.scene.start("OutdoorScene", {
+          playerX: 220,
+          playerY: 300,
+        });
+        break;
+    }
+  }
 }

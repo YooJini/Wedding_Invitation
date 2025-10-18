@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { createGame } from "../game/main";
-import Gallery from "../components/Gallery";
-import { useGameUIStore } from "../stores/useGameUIStore";
 import HUD from "../components/HUD";
 import styled from "styled-components";
+import ModalSwitch from "../components/ModalSwitch";
 
 const Map = () => {
-  const { galleryOpen } = useGameUIStore();
-
   useEffect(() => {
     const game = createGame();
 
@@ -28,11 +25,7 @@ const Map = () => {
         }}
       />
       <HUD />
-      {galleryOpen && (
-        <Gallery
-          onClose={() => useGameUIStore.setState({ galleryOpen: false })}
-        />
-      )}
+      <ModalSwitch />
     </Wrapper>
   );
 };

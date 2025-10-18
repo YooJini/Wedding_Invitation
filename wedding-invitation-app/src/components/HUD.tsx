@@ -2,20 +2,14 @@ import styled from "styled-components";
 import ControllerUI from "./ControllerUI";
 import Tooltip from "./Tooltip";
 import { useTooltipStore } from "../stores/useTooltipStore";
-import { useGameUIStore } from "../stores/useGameUIStore";
 
 const HUD = () => {
-  const { visible, text, x, y, type, onConfirm, hideTooltip } =
-    useTooltipStore();
-  const openGallery = useGameUIStore((s) => s.openGallery);
+  const { visible, text, x, y, onConfirm, hideTooltip } = useTooltipStore();
 
   const handleConfirm = () => {
     hideTooltip();
     if (onConfirm) {
       onConfirm();
-    } else {
-      if (type === "gallery") openGallery();
-      // 기타 타입 처리
     }
   };
 
@@ -26,7 +20,20 @@ const HUD = () => {
       </ControllerWrapper>
       {visible && (
         <Tooltip text={text} x={x} y={y}>
-          {onConfirm && <button onClick={handleConfirm}>보기</button>}
+          {onConfirm && (
+            <>
+              <br />
+              <button
+                onClick={handleConfirm}
+                style={{
+                  display: "block",
+                  margin: "8px auto 0 auto",
+                }}
+              >
+                보기
+              </button>
+            </>
+          )}
         </Tooltip>
       )}
     </Overlay>
