@@ -7,15 +7,8 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload() {
-    const { width, height } = this.scale;
-    const progressBar = this.add.graphics();
-    const progressBox = this.add.graphics();
-    progressBox.fillStyle(0x345675, 0.8);
-    progressBox.fillRect(width / 4, height / 2 - 25, width / 2, 50);
-
     // 게임 로딩 상태
     const setLoading = useGameLoadingStore.getState().setLoading;
-    // 로딩 중이면 loading컴포넌트 렌더링
 
     this.load.on("start", () => {
       setLoading(true);
