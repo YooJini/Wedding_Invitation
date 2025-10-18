@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import PhotoListItem from "./PhotoListItem";
 import Overlay from "./Overlay";
+import { useCallback, useEffect, useState } from "react";
+
+type Props = {
+  photos: string[];
+  onClose: () => void;
+};
 
 const Content = styled.div`
   display: flex;
@@ -84,28 +90,49 @@ const PhotoList = styled.div`
   }
 `;
 
-const Gallery = ({ onClose }: { onClose: () => void }) => {
+const LoadingStyle = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+`;
+
+const Gallery = ({ photos, onClose }: Props) => {
+  const [remaining, setRemaining] = useState(photos.length);
+  useEffect(() => setRemaining(photos.length), [photos]);
+
+  const onOneDone = useCallback(() => {
+    setRemaining((r) => Math.max(0, r - 1));
+  }, []);
+
+  const done = remaining === 0;
+
   return (
     <Overlay>
-      <Content>
-        <CurrentPhoto>
-          <img src="/photos/photo_1.jpg" alt="current photo"></img>
-        </CurrentPhoto>
-        <PhotoList>
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-          <PhotoListItem />
-        </PhotoList>
-        <button onClick={onClose}>닫기</button>
-      </Content>
+      {!done && (
+        <>
+          <LoadingStyle />
+          {photos.map((photoUrl) => (
+            <img src={photoUrl} onLoad={onOneDone} />
+          ))}
+        </>
+      )}
+      {done && (
+        <Content>
+          <CurrentPhoto>
+            <img src="/photos/photo_1.jpg" alt="current photo"></img>
+          </CurrentPhoto>
+          <PhotoList>
+            {photos.map((photoUrl, index) => (
+              <PhotoListItem key={index} url={photoUrl} />
+            ))}
+          </PhotoList>
+          <button onClick={onClose}>닫기</button>
+        </Content>
+      )}
     </Overlay>
   );
 };

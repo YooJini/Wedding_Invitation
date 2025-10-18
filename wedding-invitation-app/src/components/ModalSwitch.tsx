@@ -9,7 +9,8 @@ export default function ModalSwitch() {
 
   if (modal.kind === "none") return null;
 
-  if (modal.kind === "gallery") return <Gallery onClose={close} />;
+  if (modal.kind === "gallery")
+    return <Gallery photos={["photos/photo_1.jpg"]} onClose={close} />;
   if (modal.kind === "invitation") return <Invitation onClose={close} />;
 
   return null;

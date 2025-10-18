@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-const PhotoListItem = () => {
+type Props = {
+  url: string;
+};
+
+const PhotoListItem = ({ url }: Props) => {
   return (
     <PhotoListItemStyle>
-      <img src="/photos/photo_1.jpg"></img>
+      <img src={url}></img>
     </PhotoListItemStyle>
   );
 };
