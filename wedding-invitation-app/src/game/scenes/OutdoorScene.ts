@@ -34,6 +34,7 @@ export default class OutdoorScene extends Phaser.Scene {
     // 카메라 설정
     const cam = this.cameras.main;
     cam.setBackgroundColor("#ffffffff");
+    cam.setRoundPixels(true);
     cam.fadeOut(0);
 
     // 타일맵 생성
@@ -137,7 +138,6 @@ export default class OutdoorScene extends Phaser.Scene {
 
     // 맵 생성 후 카메라 설정
     cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
     this.applyVerticalFit();
     cam.fadeIn(200);
   }
