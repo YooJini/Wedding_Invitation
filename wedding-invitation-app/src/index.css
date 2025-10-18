@@ -73,6 +73,7 @@ svg {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-drag: none; /* 사파리 이미지 드래그 방지 */
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar {
