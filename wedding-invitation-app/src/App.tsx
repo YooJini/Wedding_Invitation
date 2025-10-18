@@ -2,7 +2,6 @@ import { useEffect } from "react";
 // import "./game/main";
 import Intro from "./pages/Intro";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Invitation from "./pages/Invitation";
 import Map from "./pages/Map";
 
 function App() {
@@ -10,7 +9,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Intro />} />
-        <Route path="/invitation" element={<Invitation />} />
         <Route path="/map" element={<Map />} />
       </Routes>
     </BrowserRouter>

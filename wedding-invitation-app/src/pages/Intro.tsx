@@ -6,9 +6,6 @@ import styled from "styled-components";
 
 const Intro = () => {
   const navigate = useNavigate();
-  const handleQuickView = () => {
-    navigate("/invitation");
-  };
   const handleMapView = () => {
     navigate("/map"); // 맵 페이지로 이동하는 함수
   };
@@ -18,15 +15,7 @@ const Intro = () => {
         <h2>jini & hyunsang</h2>
         <p>2025년 11월 8일 토요일 오후 5시</p>
 
-        <div className="buttons">
-          <button onClick={handleMapView}>START</button>
-          <button
-            style={{ backgroundColor: "transparent" }}
-            onClick={handleQuickView}
-          >
-            초대장 보기
-          </button>
-        </div>
+        <button onClick={handleMapView}>START</button>
       </div>
     </IntroStyles>
   );
@@ -68,11 +57,5 @@ const IntroStyles = styled.div`
     gap: 10px;
     color: #fff;
     text-shadow: #372e2e 0px 0px 10px;
-  }
-
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
   }
 `;

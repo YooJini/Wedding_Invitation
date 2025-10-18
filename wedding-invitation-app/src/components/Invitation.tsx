@@ -1,6 +1,3 @@
-// 모바일 초대장 페이지
-// 일반적인 모바일 청첩장 형식으로 구성
-
 import styled from "styled-components";
 
 const Invitation = () => {
