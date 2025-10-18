@@ -14,8 +14,8 @@ const DPadBg = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: "rgba(25,20,15,0.9)";
-  box-shadow: "0 8px 20px rgba(0,0,0,0.5)";
+  /* background: "rgba(25,20,15,0.9)"; */
+  /* box-shadow: "0 8px 20px rgba(0,0,0,0.5)"; */
   pointer-events: none;
 `;
 
@@ -23,13 +23,15 @@ const DirButton = styled.button<{ pos: string }>`
   position: absolute;
   width: 30px;
   height: 30px;
-  color: transparent;
-  background: "rgba(250,240,220,0.98)";
-  box-shadow: "0 8px 20px rgba(0,0,0,0.5)";
+  background: #858585;
+  opacity: 0.4;
+  /* color: transparent; */
+  /* background: "rgba(38, 38, 38, 0.98)"; */
+  /* box-shadow: "0 8px 20px rgba(0,0,0,0.5)"; */
   cursor: pointer;
   user-select: none;
   &:active {
-    opacity: 0.6;
+    opacity: 0.8;
   }
   ${({ pos }) =>
     (pos === "up" && "top: 2px; left: 50%; transform: translateX(-50%);") ||
@@ -44,7 +46,7 @@ const ControllerUI = () => {
   return (
     <DPadWrapper>
       <DPadBg>
-        <BsDpad size={100} color="#FFF8E1" />
+        <BsDpad size={100} color="#403f3f" />
       </DPadBg>
       <DirButton
         pos="up"
