@@ -31,6 +31,7 @@ const Tooltip = ({
 const TooltipStyle = styled.div`
   position: absolute;
   transform: translate(-50%, calc(-100% - 12px));
+  min-width: 120px;
   padding: 8px 12px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.88);
@@ -39,31 +40,15 @@ const TooltipStyle = styled.div`
   line-height: 1.3;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
-  white-space: normal;
-  pointer-events: auto; /* 수정: 클릭 가능하게 */
-  opacity: 0;
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  white-space: pre-wrap;
+  pointer-events: auto;
 
   &[data-visible="1"] {
     opacity: 1;
-    transform: translate(-50%, calc(-100% - 12px)) scale(1);
   }
 
   &[data-visible="0"] {
     opacity: 0;
-    transform: translate(-50%, calc(-100% - 6px)) scale(0.98);
-  }
-
-  /* 꼬리 */
-  &::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -6px;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: rgba(255, 255, 255, 0.88);
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.08));
   }
 `;
 

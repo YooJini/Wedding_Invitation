@@ -199,7 +199,7 @@ export default class OutdoorScene extends Phaser.Scene {
         break;
       case "notice":
         useTooltipStore.getState().showTooltip({
-          text: "📢 공지사항 두 사람이 드디어 결혼합니다. 자세한 내용은 초대장에서 확인해주세요 💌 ",
+          text: "📢 공지사항\n두 사람이 드디어 결혼합니다.\n자세한 내용은 초대장에서 확인해주세요 💌 ",
           x,
           y,
           onConfirm: () => {
