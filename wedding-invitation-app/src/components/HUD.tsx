@@ -47,6 +47,9 @@ const Overlay = styled.div`
   height: 100%;
   max-width: 600px;
   pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 `;
 
 const ControllerWrapper = styled.div`
