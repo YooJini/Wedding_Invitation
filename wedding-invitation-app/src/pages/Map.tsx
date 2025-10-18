@@ -3,6 +3,7 @@ import { createGame } from "../game/main";
 import HUD from "../components/HUD";
 import styled from "styled-components";
 import ModalSwitch from "../components/ModalSwitch";
+import Loading from "../components/Loading";
 
 const Map = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const Map = () => {
       />
       <HUD />
       <ModalSwitch />
+      <Loading />
     </Wrapper>
   );
 };

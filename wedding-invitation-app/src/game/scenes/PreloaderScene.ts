@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { useGameLoadingStore } from "../../stores/useGameLoadingStore";
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -12,10 +13,12 @@ export default class PreloaderScene extends Phaser.Scene {
     progressBox.fillStyle(0x345675, 0.8);
     progressBox.fillRect(width / 4, height / 2 - 25, width / 2, 50);
 
-    this.load.on("progress", (value: number) => {
-      progressBar.clear();
-      progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(width / 4, height / 2 - 25, (width / 2) * value, 50);
+    // 게임 로딩 상태
+    const setLoading = useGameLoadingStore.getState().setLoading;
+    // 로딩 중이면 loading컴포넌트 렌더링
+
+    this.load.on("start", () => {
+      setLoading(true);
     });
 
     // 리소스 로드
@@ -56,8 +59,7 @@ export default class PreloaderScene extends Phaser.Scene {
       frameHeight: 64,
     });
     this.load.on("complete", () => {
-      progressBar.destroy();
-      progressBox.destroy();
+      setLoading(false);
     });
   }
 
