@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: only light;
+  color-scheme: normal;
   color: #333;
   background-color: #ffffff;
 
@@ -46,6 +46,8 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid #333;
+  color: #333;
+  background-color: #f9f9f9;
   padding: 0.4em 1em;
   font-size: 1em;
   font-weight: 500;
@@ -76,17 +78,4 @@ svg {
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #333;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
