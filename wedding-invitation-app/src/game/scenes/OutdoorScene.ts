@@ -190,7 +190,7 @@ export default class OutdoorScene extends Phaser.Scene {
         break;
       case "photo":
         useTooltipStore.getState().showTooltip({
-          text: "오늘의 주인공들 보고 가세요! 📸",
+          text: "신랑, 신부 보고 가세요! 📸",
           x,
           y,
           onConfirm: () => {

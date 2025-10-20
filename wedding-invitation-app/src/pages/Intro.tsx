@@ -43,7 +43,7 @@ const IntroStyles = styled.div`
     content: "";
     position: absolute;
     background: url("/intro.png") center/cover no-repeat;
-    filter: blur(3px);
+    filter: blur(2px);
     z-index: 0;
     inset: 0;
   }

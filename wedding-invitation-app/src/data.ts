@@ -1,0 +1,15 @@
+export const photoUrls = [
+  "/photos/photo_1.jpg",
+  "photos/photo_2.jpg",
+  "photos/photo_3.jpg",
+  "photos/photo_4.jpg",
+  "photos/photo_5.jpg",
+  "photos/photo_6.jpg",
+  "photos/photo_7.jpg",
+  "photos/photo_8.jpg",
+  "photos/photo_9.jpg",
+  "photos/photo_10.jpg",
+  "photos/photo_11.jpg",
+  "photos/photo_12.jpg",
+  "photos/photo_13.jpg",
+];

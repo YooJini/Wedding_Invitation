@@ -4,7 +4,8 @@ import { create } from "zustand";
 type ModalState =
   | { kind: "none" }
   | { kind: "gallery" }
-  | { kind: "invitation" };
+  | { kind: "invitation" }
+  | { kind: "guide" };
 
 type GameUIState = {
   modal: ModalState;
@@ -20,8 +21,10 @@ export const useGameUIStore = create<GameUIState>((set) => ({
 
 export const openGallery = () =>
   useGameUIStore.getState().openModal({ kind: "gallery" });
-
 export const openInvitation = () =>
   useGameUIStore.getState().openModal({ kind: "invitation" });
+export const openGuide = () => {
+  useGameUIStore.getState().openModal({ kind: "guide" });
+};
 
 export const closeAnyModal = () => useGameUIStore.getState().closeModal();

@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useGameLoadingStore } from "../stores/useGameLoadingStore";
 
 const Loading = () => {
-  const isLoading = useGameLoadingStore((state) => state.loading);
+  const isLoading = useGameLoadingStore((s) => s.loading);
   if (!isLoading) return null;
 
-  return <Wrapper>Loading</Wrapper>;
+  return <Wrapper>Loading...</Wrapper>;
 };
 
 const Wrapper = styled.div`
@@ -15,6 +15,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background: rgba(255, 255, 255);
+  background: white;
 `;
 export default Loading;

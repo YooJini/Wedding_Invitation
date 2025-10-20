@@ -2,32 +2,39 @@ import styled from "styled-components";
 import PhotoListItem from "./PhotoListItem";
 import Overlay from "./Overlay";
 import { useCallback, useEffect, useState } from "react";
+import { photoUrls } from "../data";
 
 type Props = {
-  photos: string[];
   onClose: () => void;
 };
+
+const Wrapper = styled.div`
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  background-color: #f8faeb;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+`;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: beige;
-  border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  gap: 20px;
+  margin: 20px 0;
   width: 100%;
-  max-width: 500px;
   height: 100%;
 `;
 
 // 현재 보고 있는 사진 큰화면으로
 const CurrentPhoto = styled.div`
   width: 80%;
-  height: 70%;
+  height: 60%;
   border: 1px solid #ddd;
   background-color: white;
-  margin: 16px 0;
-  padding: 16px;
+  /* margin: 16px 0; */
+  padding: 12px 12px 16px 12px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -35,7 +42,7 @@ const CurrentPhoto = styled.div`
 
   img {
     width: 100%;
-    height: 85%;
+    height: 80%;
   }
 `;
 // 사진 리스트
@@ -52,7 +59,7 @@ const PhotoList = styled.div`
   background: #3d3939; /* 필름 배경 */
   border-radius: 8px;
   border: 1px solid #444;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 
   /* 필름 구멍(마크) 위쪽 */
   &::before {
@@ -96,11 +103,12 @@ const LoadingStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255);
   z-index: 1000;
 `;
 
-const Gallery = ({ photos, onClose }: Props) => {
+const Gallery = ({ onClose }: Props) => {
+  const photos = photoUrls;
   const [remaining, setRemaining] = useState(photos.length);
   useEffect(() => setRemaining(photos.length), [photos]);
 
@@ -121,17 +129,19 @@ const Gallery = ({ photos, onClose }: Props) => {
         </>
       )}
       {done && (
-        <Content>
-          <CurrentPhoto>
-            <img src="/photos/photo_1.jpg" alt="current photo"></img>
-          </CurrentPhoto>
-          <PhotoList>
-            {photos.map((photoUrl, index) => (
-              <PhotoListItem key={index} url={photoUrl} />
-            ))}
-          </PhotoList>
-          <button onClick={onClose}>닫기</button>
-        </Content>
+        <Wrapper>
+          <Content>
+            <CurrentPhoto>
+              <img src="/photos/photo_1.jpg" alt="current photo"></img>
+            </CurrentPhoto>
+            <PhotoList>
+              {photos.map((photoUrl, index) => (
+                <PhotoListItem key={index} url={photoUrl} />
+              ))}
+            </PhotoList>
+            <button onClick={onClose}>닫기</button>
+          </Content>
+        </Wrapper>
       )}
     </Overlay>
   );

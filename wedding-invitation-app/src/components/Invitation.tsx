@@ -1,15 +1,10 @@
 import styled from "styled-components";
 import Overlay from "./Overlay";
-import { useEffect } from "react";
 
 const Invitation = ({ onClose }: { onClose: () => void }) => {
   // TODO
   // 교통 정보
   // 식사 안내
-
-  useEffect(() => {
-    console.log("초대장 컴포넌트");
-  });
   return (
     <Overlay>
       <InvitationStyles>
@@ -20,10 +15,8 @@ const Invitation = ({ onClose }: { onClose: () => void }) => {
           <h1>초대장</h1>
           <h2>진이 👰🩷🤵 현상</h2>
           <p>진이와 현상이의 결혼식에 초대합니다.</p>
-          <div className="details">
-            <p>언제: 2025년 11월 8일 토요일 오후 5시</p>
-            <p>어디서: 수원 라온몽드 하우스 웨딩</p>
-          </div>
+          <p>언제: 2025년 11월 8일 토요일 오후 5시</p>
+          <p>어디서: 수원 라온몽드 하우스 웨딩</p>
         </div>
       </InvitationStyles>
     </Overlay>
@@ -51,8 +44,7 @@ const InvitationStyles = styled.div`
     padding: 3px 6px;
     font-size: 14px;
     background-color: transparent;
-    color: #000000;
-    border: 3px solid #000000cc;
+    border: 2px solid #333;
     border-radius: 5px;
   }
 

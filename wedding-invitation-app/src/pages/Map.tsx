@@ -4,10 +4,13 @@ import HUD from "../components/HUD";
 import styled from "styled-components";
 import ModalSwitch from "../components/ModalSwitch";
 import Loading from "../components/Loading";
+import { openGuide } from "../stores/useGameUIStore";
 
 const Map = () => {
   useEffect(() => {
     const game = createGame();
+
+    openGuide();
 
     return () => {
       game.destroy(true);

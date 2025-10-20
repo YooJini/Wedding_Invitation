@@ -1,6 +1,7 @@
 // ModalSwitch.tsx (요지)
 import { useGameUIStore } from "../stores/useGameUIStore";
 import Gallery from "./Gallery";
+import Guide from "./Guide";
 import Invitation from "./Invitation";
 
 export default function ModalSwitch() {
@@ -9,9 +10,9 @@ export default function ModalSwitch() {
 
   if (modal.kind === "none") return null;
 
-  if (modal.kind === "gallery")
-    return <Gallery photos={["photos/photo_1.jpg"]} onClose={close} />;
+  if (modal.kind === "gallery") return <Gallery onClose={close} />;
   if (modal.kind === "invitation") return <Invitation onClose={close} />;
+  if (modal.kind === "guide") return <Guide onClose={close} />;
 
   return null;
 }
