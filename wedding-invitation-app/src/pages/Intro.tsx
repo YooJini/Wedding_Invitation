@@ -11,12 +11,14 @@ const Intro = () => {
   };
   return (
     <IntroStyles>
-      <div className="content">
-        <h2>jini & hyunsang</h2>
-        <p>2025년 11월 8일 토요일 오후 5시</p>
-
-        <button onClick={handleMapView}>START</button>
+      <div className="title">
+        <span style={{ fontSize: "20px" }}>jini & hyunsang</span>
+        <span style={{ fontSize: "35px" }}>Wedding Day</span>
       </div>
+      {/* <span>2025.11.08 (토) 17:00</span>
+        <span>수원 라온몽드 하우스 웨딩</span> */}
+
+      <button onClick={handleMapView}>ENTER MAP</button>
     </IntroStyles>
   );
 };
@@ -31,12 +33,17 @@ const IntroStyles = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  gap: 30px;
+
+  button {
+    z-index: 1;
+  }
 
   &::before {
     content: "";
     position: absolute;
-    background: url("/outfield.png") center/cover no-repeat;
-    filter: blur(2px);
+    background: url("/intro.png") center/cover no-repeat;
+    filter: blur(3px);
     z-index: 0;
     inset: 0;
   }
@@ -48,13 +55,12 @@ const IntroStyles = styled.div`
     }
   }
 
-  .content {
+  .title {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
     color: #fff;
     text-shadow: #372e2e 0px 0px 10px;
   }
