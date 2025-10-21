@@ -107,7 +107,7 @@ const LoadingStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255);
+  background: white;
   z-index: 1000;
 `;
 
@@ -125,7 +125,7 @@ const Gallery = ({ onClose }: Props) => {
     <Overlay>
       {!done && (
         <>
-          <LoadingStyle />
+          <LoadingStyle>Loading..</LoadingStyle>
           {photos.map((photoUrl) => (
             <img src={photoUrl} decoding="async" onLoad={onOneDone} />
           ))}
