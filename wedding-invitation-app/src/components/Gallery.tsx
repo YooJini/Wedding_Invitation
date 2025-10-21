@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PhotoListItem from "./PhotoListItem";
 import Overlay from "./Overlay";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { photoUrls } from "../data";
 
 type Props = {
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   background-color: #f8faeb;
   border-radius: 8px;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   height: 100%;
 `;
 
@@ -109,8 +109,7 @@ const LoadingStyle = styled.div`
 
 const Gallery = ({ onClose }: Props) => {
   const photos = photoUrls;
-  const [remaining, setRemaining] = useState(photos.length);
-  useEffect(() => setRemaining(photos.length), [photos]);
+  const [remaining, setRemaining] = useState(5);
 
   const onOneDone = useCallback(() => {
     setRemaining((r) => Math.max(0, r - 1));
@@ -132,7 +131,7 @@ const Gallery = ({ onClose }: Props) => {
         <Wrapper>
           <Content>
             <CurrentPhoto>
-              <img src="/photos/photo_1.jpg" alt="current photo"></img>
+              <img src={photos[0]} alt="current photo"></img>
             </CurrentPhoto>
             <PhotoList>
               {photos.map((photoUrl, index) => (
