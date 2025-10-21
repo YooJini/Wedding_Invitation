@@ -5,7 +5,8 @@ type ModalState =
   | { kind: "none" }
   | { kind: "gallery" }
   | { kind: "invitation" }
-  | { kind: "guide" };
+  | { kind: "guide" }
+  | { kind: "program" };
 
 type GameUIState = {
   modal: ModalState;
@@ -25,6 +26,9 @@ export const openInvitation = () =>
   useGameUIStore.getState().openModal({ kind: "invitation" });
 export const openGuide = () => {
   useGameUIStore.getState().openModal({ kind: "guide" });
+};
+export const openProgram = () => {
+  useGameUIStore.getState().openModal({ kind: "program" });
 };
 
 export const closeAnyModal = () => useGameUIStore.getState().closeModal();

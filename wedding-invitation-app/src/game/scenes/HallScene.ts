@@ -1,6 +1,8 @@
 import Phaser from "phaser";
 import { PlayerController } from "../controllers/PlayerController";
 import { useTooltipStore } from "../../stores/useTooltipStore";
+import { openProgram } from "../../stores/useGameUIStore";
+import { worldToScreen } from "../../utils/phaserUtils";
 
 type TriggerObj = {
   name: string;
@@ -147,6 +149,7 @@ export default class HallScene extends Phaser.Scene {
 
   // 트리거 이벤트
   handleTriggerEvent(triggerName: string) {
+    const { x, y } = worldToScreen(this, this.player.x, this.player.y - 40);
     switch (triggerName) {
       case "exit":
         // 현재 플레이어 위치(또는 원하는 스폰 지점)를 OutdoorScene으로 전달
@@ -155,6 +158,15 @@ export default class HallScene extends Phaser.Scene {
           playerY: 300,
         });
         break;
+      case "program":
+        useTooltipStore.getState().showTooltip({
+          text: "식순 보러가기",
+          x,
+          y,
+          onConfirm: () => {
+            openProgram();
+          },
+        });
     }
   }
 }

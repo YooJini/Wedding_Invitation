@@ -1,8 +1,8 @@
 import Phaser from "phaser";
 import { openGallery, openInvitation } from "../../stores/useGameUIStore";
 import { useTooltipStore } from "../../stores/useTooltipStore";
-import { worldToScreen } from "../utils/phaserUtils";
 import { PlayerController } from "../controllers/PlayerController";
+import { worldToScreen } from "../../utils/phaserUtils";
 
 type TriggerObj = {
   name: string;

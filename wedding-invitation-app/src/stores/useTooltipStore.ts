@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type TooltipType = "gallery" | "notice" | "custom";
+type TooltipType = "gallery" | "notice" | "program " | "custom";
 
 interface TooltipState {
   visible: boolean;
