@@ -201,7 +201,7 @@ export default class OutdoorScene extends Phaser.Scene {
       case "coffee":
         // 예시: 툴팁 노출 (플레이어 위치 기준)
         useTooltipStore.getState().showTooltip({
-          text: "신랑 신부는 떨고 있겠지만.. 여러분은 여유롭게 한 잔 어떠세요? 😂 두 잔, 세 잔 드시면 더 좋아요 맘껏 드세요! ☕",
+          text: "🍹마당 커피차 오픈!\n음료와 커피가 준비되어 있으니 많이 많이 이용해주세요 😄",
           x,
           y, // 플레이어 위쪽에 표시
         });

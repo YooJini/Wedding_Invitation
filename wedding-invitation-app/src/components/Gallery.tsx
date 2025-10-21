@@ -48,12 +48,10 @@ const Film = styled.div`
   width: 80%;
   height: fit-content;
   padding: 12px;
-  /* height: 120px; */
-
   background: #3d3939; /* 필름 배경 */
   border-radius: 8px;
   border: 1px solid #444;
-
+  box-sizing: border-box;
   /* 필름 구멍(마크) 위쪽 */
   &::before {
     content: "";
