@@ -45,21 +45,14 @@ const CurrentPhoto = styled.div`
     height: 80%;
   }
 `;
-// 사진 리스트
-const PhotoList = styled.div`
+const Film = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
   width: 80%;
   height: 120px;
-  box-sizing: border-box;
-  overflow-x: auto;
+
   background: #3d3939; /* 필름 배경 */
   border-radius: 8px;
   border: 1px solid #444;
-  /* margin-bottom: 1rem; */
 
   /* 필름 구멍(마크) 위쪽 */
   &::before {
@@ -95,6 +88,17 @@ const PhotoList = styled.div`
     border-radius: 8px;
     z-index: 1;
   }
+`;
+
+// 사진 리스트
+const PhotoList = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
 `;
 
 const LoadingStyle = styled.div`
@@ -133,11 +137,13 @@ const Gallery = ({ onClose }: Props) => {
             <CurrentPhoto>
               <img src={photos[0]} alt="current photo"></img>
             </CurrentPhoto>
-            <PhotoList>
-              {photos.map((photoUrl, index) => (
-                <PhotoListItem key={index} url={photoUrl} />
-              ))}
-            </PhotoList>
+            <Film>
+              <PhotoList>
+                {photos.map((photoUrl, index) => (
+                  <PhotoListItem key={index} url={photoUrl} />
+                ))}
+              </PhotoList>
+            </Film>
             <button onClick={onClose}>닫기</button>
           </Content>
         </Wrapper>
