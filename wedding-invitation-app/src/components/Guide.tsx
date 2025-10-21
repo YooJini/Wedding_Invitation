@@ -19,7 +19,6 @@ const Guide = ({ onClose }: { onClose: () => void }) => {
             </p>
           </Content>
           <button
-            className="back-button"
             onClick={() => {
               onClose();
               localStorage.setItem("watchedGuide", "true");
@@ -40,19 +39,19 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 300px;
+  width: 80vw;
   max-height: fit-content;
   border-radius: 8px;
   overflow-y: scroll;
   background-color: #fefff3;
   border: 2px solid #333;
 
-  .back-button {
+  button {
     position: absolute;
-    right: 20px;
-    top: 16px;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: 0.5rem;
     padding: 3px 6px;
-    font-size: 14px;
     background-color: transparent;
     border: 2px solid #333;
     border-radius: 5px;

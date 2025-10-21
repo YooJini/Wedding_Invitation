@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PhotoListItem from "./PhotoListItem";
 import Overlay from "./Overlay";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { photoUrls } from "../data";
 
 type Props = {
@@ -9,12 +9,9 @@ type Props = {
 };
 
 const Wrapper = styled.div`
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   background-color: #f8faeb;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const Content = styled.div`
@@ -30,15 +27,16 @@ const Content = styled.div`
 // 현재 보고 있는 사진 큰화면으로
 const CurrentPhoto = styled.div`
   width: 80%;
-  height: 60%;
+  height: 70%;
   border: 1px solid #ddd;
   background-color: white;
-  /* margin: 16px 0; */
+  object-fit: contain;
   padding: 12px 12px 16px 12px;
   display: flex;
   align-items: center;
   flex-direction: column;
   position: relative;
+  box-sizing: border-box;
 
   img {
     width: 100%;
@@ -48,7 +46,9 @@ const CurrentPhoto = styled.div`
 const Film = styled.div`
   position: relative;
   width: 80%;
-  height: 120px;
+  height: fit-content;
+  padding: 12px;
+  /* height: 120px; */
 
   background: #3d3939; /* 필름 배경 */
   border-radius: 8px;
@@ -99,6 +99,8 @@ const PhotoList = styled.div`
   overflow-x: auto;
   width: 100%;
   height: 100%;
+  gap: 12px;
+  box-sizing: border-box;
 `;
 
 const LoadingStyle = styled.div`
@@ -114,6 +116,7 @@ const LoadingStyle = styled.div`
 const Gallery = ({ onClose }: Props) => {
   const photos = photoUrls;
   const [remaining, setRemaining] = useState(5);
+  const [selected, setSelected] = useState(0);
 
   const onOneDone = useCallback(() => {
     setRemaining((r) => Math.max(0, r - 1));
@@ -121,13 +124,19 @@ const Gallery = ({ onClose }: Props) => {
 
   const done = remaining === 0;
 
+  const handleSelect = useCallback((index: number) => {
+    setSelected(index);
+  }, []);
+
+  const currentSrc = useMemo(() => photos[selected], [photos, selected]);
+
   return (
     <Overlay>
       {!done && (
         <>
-          <LoadingStyle>Loading..</LoadingStyle>
-          {photos.map((photoUrl) => (
-            <img src={photoUrl} decoding="async" onLoad={onOneDone} />
+          <LoadingStyle>사진 가져오는 중...</LoadingStyle>
+          {photos.map((photoUrl, i) => (
+            <img key={i} src={photoUrl} onLoad={onOneDone} />
           ))}
         </>
       )}
@@ -135,12 +144,17 @@ const Gallery = ({ onClose }: Props) => {
         <Wrapper>
           <Content>
             <CurrentPhoto>
-              <img src={photos[0]} decoding="async" alt="current photo"></img>
+              <img src={currentSrc} alt="current photo"></img>
             </CurrentPhoto>
             <Film>
               <PhotoList>
                 {photos.map((photoUrl, index) => (
-                  <PhotoListItem key={index} url={photoUrl} />
+                  <PhotoListItem
+                    key={index}
+                    url={photoUrl}
+                    isActive={index === selected}
+                    onClick={() => handleSelect(index)}
+                  />
                 ))}
               </PhotoList>
             </Film>
