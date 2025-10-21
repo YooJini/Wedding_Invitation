@@ -2,9 +2,6 @@ import styled from "styled-components";
 import Overlay from "./Overlay";
 
 const Invitation = ({ onClose }: { onClose: () => void }) => {
-  // TODO
-  // 교통 정보
-  // 식사 안내
   return (
     <Overlay>
       <InvitationStyles>
@@ -15,6 +12,18 @@ const Invitation = ({ onClose }: { onClose: () => void }) => {
           <p>진이와 현상이의 결혼식에 초대합니다.</p>
           <p>언제: 2025년 11월 8일 토요일 오후 5시</p>
           <p>어디서: 수원 라온몽드 하우스 웨딩</p>
+          <Transportation>
+            <h3>🚎셔틀 안내</h3>
+            <p>
+              ❓308루6671 검정 카니발 <br />
+              📍고용노동부경기지청 앞 버스정류장쪽
+              <br />
+              (성균관대역 1번출구 대각선 율전동성당쪽) <br />
+              🕛시간표 <br />
+              예식 전: 15:40 / 16:00 / 16:20 / 16:45 <br />
+              예식 후: 19:00 / 19:30
+            </p>
+          </Transportation>
         </Content>
       </InvitationStyles>
     </Overlay>
@@ -30,10 +39,15 @@ const InvitationStyles = styled.div`
   /* align-items: center; */
   /* justify-content: center; */
   width: 80vw;
-  height: 90vh;
+  max-height: 80vh;
   border-radius: 8px;
   overflow-y: scroll;
   background-color: #fefff3;
+
+  p {
+    font-size: 1rem;
+    margin-top: -10px;
+  }
 `;
 
 const Content = styled.div`
@@ -42,6 +56,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
 
+  padding: 0 10px;
   button {
     position: absolute;
     top: 1rem;
@@ -52,4 +67,10 @@ const Content = styled.div`
     border: 2px solid #333;
     border-radius: 5px;
   }
+`;
+
+const Transportation = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
