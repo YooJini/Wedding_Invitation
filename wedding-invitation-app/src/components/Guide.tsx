@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 80vw;
+  width: 70vw;
   max-height: fit-content;
   border-radius: 8px;
   overflow-y: scroll;
