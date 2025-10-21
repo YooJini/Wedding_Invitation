@@ -7,7 +7,7 @@ type Props = {
 const PhotoListItem = ({ url }: Props) => {
   return (
     <PhotoListItemStyle>
-      <img src={url}></img>
+      <img src={url} decoding="async"></img>
     </PhotoListItemStyle>
   );
 };

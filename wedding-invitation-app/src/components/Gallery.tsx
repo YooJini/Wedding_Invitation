@@ -127,7 +127,7 @@ const Gallery = ({ onClose }: Props) => {
         <>
           <LoadingStyle />
           {photos.map((photoUrl) => (
-            <img src={photoUrl} onLoad={onOneDone} />
+            <img src={photoUrl} decoding="async" onLoad={onOneDone} />
           ))}
         </>
       )}
@@ -135,7 +135,7 @@ const Gallery = ({ onClose }: Props) => {
         <Wrapper>
           <Content>
             <CurrentPhoto>
-              <img src={photos[0]} alt="current photo"></img>
+              <img src={photos[0]} decoding="async" alt="current photo"></img>
             </CurrentPhoto>
             <Film>
               <PhotoList>
