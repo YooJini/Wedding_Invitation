@@ -182,7 +182,7 @@ export default class OutdoorScene extends Phaser.Scene {
 
   // 트리거 이벤트
   handleTriggerEvent(triggerName: string) {
-    const { x, y } = worldToScreen(this, this.player.x, this.player.y - 40);
+    const { x, y } = worldToScreen(this, this.player.x, this.player.y - 20);
 
     switch (triggerName) {
       case "door":
