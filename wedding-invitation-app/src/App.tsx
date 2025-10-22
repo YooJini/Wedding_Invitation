@@ -9,6 +9,7 @@ function App() {
     const audio = new Audio("/audios/Gimbap.mp3");
     audio.loop = true;
     audio.preload = "auto";
+    audio.volume = 0.3;
     audio.play();
   }, []);
   return (
