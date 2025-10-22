@@ -12,44 +12,42 @@ const Wrapper = styled.div`
   background-color: #f8faeb;
   width: 100vw;
   height: 100vh;
+  display: grid;
+  place-items: center;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  height: 100%;
+  gap: 1.25em;
 `;
 
 // 현재 보고 있는 사진 큰화면으로
-const CurrentPhoto = styled.div`
-  width: 90%;
-  height: 80%;
+const CurrentPhotoContainer = styled.div`
+  width: 20em;
+  height: 25em;
   border: 1px solid #ddd;
   background-color: white;
-  object-fit: contain;
-  padding: 12px 12px 16px 12px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
+  padding: 12px 12px 0 12px;
   box-sizing: border-box;
+`;
 
+const CurrentPhoto = styled.div`
+  width: 100%;
+  aspect-ratio: 1 / 1;
   img {
     width: 100%;
-    height: 80%;
+    height: 100%;
     object-fit: cover;
   }
 `;
 const Film = styled.div`
   position: relative;
-  width: 90%;
+  width: 20em;
   height: fit-content;
-  padding: 12px;
-  background: #3d3939; /* 필름 배경 */
+  padding: 1em;
+  background: #3b3126f9; /* 필름 배경 */
   border-radius: 8px;
   border: 1px solid #444;
   box-sizing: border-box;
@@ -63,9 +61,9 @@ const Film = styled.div`
     height: 4px;
     background: repeating-linear-gradient(
       to right,
-      transparent 0 5px,
-      #fff 10px 15px,
-      transparent 10px 20px
+      transparent 0 0.3em,
+      #fff 0.5em 1em,
+      transparent 0.5em 1.5em
     );
     border-radius: 8px;
     z-index: 1;
@@ -80,9 +78,9 @@ const Film = styled.div`
     height: 4px;
     background: repeating-linear-gradient(
       to right,
-      transparent 0 5px,
-      #fff 10px 15px,
-      transparent 10px 20px
+      transparent 0 0.3em,
+      #fff 0.5em 1em,
+      transparent 0.5em 1.5em
     );
     border-radius: 8px;
     z-index: 1;
@@ -98,7 +96,7 @@ const PhotoList = styled.div`
   overflow-x: auto;
   width: 100%;
   height: 100%;
-  gap: 12px;
+  gap: 1em;
   box-sizing: border-box;
 `;
 
@@ -142,9 +140,11 @@ const Gallery = ({ onClose }: Props) => {
       {done && (
         <Wrapper>
           <Content>
-            <CurrentPhoto>
-              <img src={currentSrc} alt="current photo"></img>
-            </CurrentPhoto>
+            <CurrentPhotoContainer>
+              <CurrentPhoto>
+                <img src={currentSrc} alt="current photo"></img>
+              </CurrentPhoto>
+            </CurrentPhotoContainer>
             <Film>
               <PhotoList>
                 {photos.map((photoUrl, index) => (
@@ -157,7 +157,9 @@ const Gallery = ({ onClose }: Props) => {
                 ))}
               </PhotoList>
             </Film>
-            <button onClick={onClose}>닫기</button>
+            <button style={{ fontSize: "1rem" }} onClick={onClose}>
+              닫기
+            </button>
           </Content>
         </Wrapper>
       )}
