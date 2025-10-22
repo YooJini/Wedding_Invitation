@@ -5,6 +5,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Map from "./pages/Map";
 
 function App() {
+  useEffect(() => {
+    const audio = new Audio("/audios/Gimbap.mp3");
+    audio.loop = true;
+    audio.preload = "auto";
+    audio.play();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
