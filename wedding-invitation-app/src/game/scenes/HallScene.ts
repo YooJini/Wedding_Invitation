@@ -160,7 +160,7 @@ export default class HallScene extends Phaser.Scene {
         break;
       case "program":
         useTooltipStore.getState().showTooltip({
-          text: "끝까지 오셨군요! 👏\n감사와 축하의 의미로 식순 스포합니다 (안물안궁주의..😁)",
+          text: "끝까지 오셨군요! 👏\n감사와 축하의 의미로 식순 스포합니다\n(안물안궁주의..😁)",
           x,
           y,
           onConfirm: () => {

@@ -24,8 +24,7 @@ const Tooltip = ({ text, x, y, visible = true, children }: TooltipProps) => {
 const TooltipStyle = styled.div`
   position: absolute;
   transform: translate(-50%, calc(-100% - 12px));
-  min-width: 9rem;
-  max-width: 10rem;
+  min-width: 10rem;
   padding: 1em 1.5em;
   border-radius: 12px;
   background: #fefff3d9;
@@ -36,6 +35,10 @@ const TooltipStyle = styled.div`
   backdrop-filter: blur(6px);
   white-space: pre-wrap;
   pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   &[data-visible="1"] {
     opacity: 1;
