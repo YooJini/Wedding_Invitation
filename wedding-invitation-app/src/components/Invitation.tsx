@@ -39,7 +39,8 @@ const InvitationStyles = styled.div`
   flex-direction: column;
   /* align-items: center; */
   /* justify-content: center; */
-  width: 80vw;
+  min-width: 80vw;
+  max-width: fit-content;
   max-height: 80vh;
   border-radius: 8px;
   overflow-y: scroll;

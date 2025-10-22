@@ -30,10 +30,11 @@ const ProgramStyles = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 80vw;
-  border-radius: 8px;
+  min-width: 80vw;
+  max-width: fit-content;
   max-height: fit-content;
-  box-sizing: border-box;
+  border-radius: 8px;
+  box-sizing: content-box;
   background-color: #ffffff;
   border: 2px solid #333;
 `;
@@ -43,7 +44,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding: 0 1em;
   button {
     position: absolute;
     top: 1em;

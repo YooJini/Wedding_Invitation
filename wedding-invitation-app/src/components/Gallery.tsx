@@ -20,7 +20,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3em;
+  gap: 1.2em;
 `;
 
 // 현재 보고 있는 사진 큰화면으로
