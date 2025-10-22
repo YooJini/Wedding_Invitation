@@ -44,6 +44,7 @@ const InvitationStyles = styled.div`
   border-radius: 8px;
   overflow-y: scroll;
   background-color: #fefff3;
+  border: 2px solid #333;
 
   p {
     font-size: 0.9rem;
