@@ -20,13 +20,13 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25em;
+  gap: 3em;
 `;
 
 // 현재 보고 있는 사진 큰화면으로
 const CurrentPhotoContainer = styled.div`
-  width: 20em;
-  height: 25em;
+  width: 90vw;
+  aspect-ratio: 4 / 5;
   border: 1px solid #ddd;
   background-color: white;
   padding: 12px 12px 0 12px;
@@ -44,7 +44,7 @@ const CurrentPhoto = styled.div`
 `;
 const Film = styled.div`
   position: relative;
-  width: 20em;
+  width: 90vw;
   height: fit-content;
   padding: 1em;
   background: #3b3126f9; /* 필름 배경 */
