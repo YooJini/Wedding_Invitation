@@ -12,8 +12,8 @@ const Intro = () => {
   return (
     <IntroStyles>
       <div className="title">
-        <span style={{ fontSize: "20px" }}>jini & hyunsang</span>
-        <span style={{ fontSize: "35px" }}>Wedding Day</span>
+        <span style={{ fontSize: "1rem" }}>jini & hyunsang</span>
+        <span style={{ fontSize: "2rem" }}>Wedding Day</span>
       </div>
       {/* <span>2025.11.08 (토) 17:00</span>
         <span>수원 라온몽드 하우스 웨딩</span> */}
@@ -37,6 +37,7 @@ const IntroStyles = styled.div`
 
   button {
     z-index: 1;
+    font-size: 1rem;
   }
 
   &::before {

@@ -21,8 +21,8 @@ const Invitation = ({ onClose }: { onClose: () => void }) => {
               <br />
               (성균관대역 1번출구 대각선 율전동성당) <br />
               🕛운행 시간 <br />
-              예식 전: 15:40 / 16:00 / 16:20 / 16:45 <br />
-              예식 후: 19:00 / 19:30
+              전: 15:40 / 16:00 / 16:20 / 16:45 <br />
+              후: 19:00 / 19:30
             </p>
           </Transportation>
         </Content>
@@ -46,7 +46,7 @@ const InvitationStyles = styled.div`
   background-color: #fefff3;
 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: -10px;
   }
 `;
@@ -56,13 +56,13 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 10px;
+  padding: 1em 1em;
 
   button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 3px 6px;
+    top: 1em;
+    right: 1em;
+    padding: 0.1em 0.3em;
     font-size: 1rem;
     background-color: transparent;
     border: 2px solid #333;

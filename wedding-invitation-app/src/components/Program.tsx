@@ -35,7 +35,7 @@ const ProgramStyles = styled.div`
   max-height: fit-content;
   box-sizing: border-box;
   background-color: #ffffff;
-  border: 2px solid #2c2c2ca7;
+  border: 2px solid #333;
 `;
 
 const Content = styled.div`
@@ -46,9 +46,9 @@ const Content = styled.div`
 
   button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 3px 6px;
+    top: 1em;
+    right: 1em;
+    padding: 0.1em 0.3em;
     font-size: 1rem;
     background-color: transparent;
     border: 2px solid #333;
@@ -57,6 +57,6 @@ const Content = styled.div`
 
   p {
     font-size: 1rem;
-    margin-top: -5px;
+    margin-top: -0.1em;
   }
 `;

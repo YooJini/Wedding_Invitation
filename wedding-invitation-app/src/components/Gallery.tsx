@@ -18,16 +18,16 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  margin: 20px 0;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
   height: 100%;
 `;
 
 // 현재 보고 있는 사진 큰화면으로
 const CurrentPhoto = styled.div`
-  width: 80%;
-  height: 70%;
+  width: 90%;
+  height: 80%;
   border: 1px solid #ddd;
   background-color: white;
   object-fit: contain;
@@ -41,11 +41,12 @@ const CurrentPhoto = styled.div`
   img {
     width: 100%;
     height: 80%;
+    object-fit: cover;
   }
 `;
 const Film = styled.div`
   position: relative;
-  width: 80%;
+  width: 90%;
   height: fit-content;
   padding: 12px;
   background: #3d3939; /* 필름 배경 */
