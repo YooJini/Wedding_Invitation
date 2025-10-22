@@ -11,7 +11,7 @@ const Guide = ({ onClose }: { onClose: () => void }) => {
       <Overlay>
         <Wrapper>
           <Content>
-            <p>🎉 Welcome !</p>
+            <p style={{ fontSize: "1rem" }}>🎉 Welcome !</p>
             <p>
               이곳에서 웨딩 사진과 예식 관련 정보를 볼 수 있어요.
               <br />
@@ -39,12 +39,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 70vw;
+  width: 80vw;
   max-height: fit-content;
   border-radius: 8px;
   overflow-y: scroll;
   background-color: #fefff3;
   border: 2px solid #333;
+  padding: 0 0 1em 0;
 
   button {
     position: absolute;
