@@ -10,5 +10,4 @@ export const photoUrls = [
   "photos/photo_9.jpg",
   "photos/photo_10.jpg",
   "photos/photo_11.jpg",
-  "photos/photo_12.jpg",
 ];

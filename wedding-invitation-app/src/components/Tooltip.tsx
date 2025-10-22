@@ -24,8 +24,8 @@ const Tooltip = ({ text, x, y, visible = true, children }: TooltipProps) => {
 const TooltipStyle = styled.div`
   position: absolute;
   transform: translate(-50%, calc(-100% - 12px));
-  min-width: 10rem;
-  padding: 1em 1.5em;
+  min-width: 15em;
+  padding: 1em 1em;
   border-radius: 12px;
   background: #fefff3d9;
   color: #333;
