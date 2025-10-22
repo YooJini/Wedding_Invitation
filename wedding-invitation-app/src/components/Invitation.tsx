@@ -47,7 +47,7 @@ const InvitationStyles = styled.div`
   border: 2px solid #333;
 
   p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-top: -10px;
   }
 `;
